@@ -1,0 +1,32 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="main_button_width">177dp</dimen>
+    <dimen name="main_button_height">137dp</dimen>
+    <dimen name="main_detail_height">250dp</dimen>
+
+
+    <dimen name="login_edit_text_width">250dp</dimen>
+
+    <dimen name="cus_det_margin_left">20sp</dimen>
+    <dimen name="cus_det_text_size">16sp</dimen>
+    <dimen name="arrow_width">25dp</dimen>
+    <dimen name="sub_heading">17sp</dimen>
+    <dimen name="sub_heading_small">18sp</dimen>
+    <dimen name="_20">20sp</dimen>
+    <dimen name="_19">19sp</dimen>
+    <dimen name="_17">17sp</dimen>
+    <dimen name="_16">16sp</dimen>
+    <dimen name="_9">9sp</dimen>
+    <dimen name="_8">8sp</dimen>
+    <dimen name="_7">7sp</dimen>
+    <dimen name="_6">6sp</dimen>
+    <dimen name="_5">5sp</dimen>
+    <dimen name="_2">2sp</dimen>
+    <dimen name="sub_heading_padding_left">5dp</dimen>
+    <dimen name="login_box">290dp</dimen>
+    <dimen name="payment_height">120dp</dimen>
+    <dimen name="edit_text_length">290dp</dimen>
+    <dimen name="edit_text_height">55dp</dimen>
+
+
+</resources>

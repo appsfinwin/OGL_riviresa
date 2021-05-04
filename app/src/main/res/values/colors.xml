@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#c91854</color>
+    <color name="colorPrimaryDark">#c91854</color>
+    <!--<color name="colorPrimary">#2186bc</color>
+    <color name="colorPrimaryDark">#2186bc</color>-->
+    <color name="colorAccent">#c91854</color>
+    <color name="white">#ffffff</color>
+    <color name="l_white">#d6d6d6</color>
+    <color name="l_black">#303030</color>
+    <color name="black">#000000</color>
+    <color name="l_black_heading">#595959</color>
+    <color name="l_btn_back">#A9A9A9</color>
+    <color name="l_btn_txt">#595959</color>
+    <color name="gray">#C1C0C0</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="l_gray">#e7e7e7</color>
+    <color name="item_color_1">#FFF</color>
+    <color name="item_color_2">#FFF</color>
+    <color name="brown">#5D4037</color>
+    <color name="l_red">#912725</color>
+    <color name="green">#14a959</color>
+    <color name="edit_text_highlight">#ffffff</color>
+    <color name="bg_loading">#84000000</color>
+    <color name="trsnsperent">#00000000</color>
+
+</resources>

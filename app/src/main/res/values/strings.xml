@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CustMate-OGL</string>
+    <string name="action_settings">Exit?</string>
+    <string name="alert_msg">%1$s</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_activity_customer_details">CustomerDetailsActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="cus_details_string">You are eligible for online Gold Loan...\nPlease see your personal and bank account details below if the details are correct please click &quot;Continue&quot; to continue, else visit your nearest branch to update the details.</string>
+</resources>

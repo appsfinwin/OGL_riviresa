@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.rivaresa.cusmateogl"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".payment.axis_payment.AxisPaymentActivity"></activity>
+        <activity android:name=".payout.PayoutActivity" />
+        <activity android:name=".account_list.dialog_inventory_details.InventoryDetailsActivity" />
+        <activity
+            android:name=".signup.SignupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".reset_password.otp.OtpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".reset_password.reset_password.ResetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".reset_password.forgot_password.ForgotPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".payment.paytm.PayUActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".contact.ContactActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".renew_loan.RenewLoanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".final_confirmation.ConfirmationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".calculator.CalculatorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".finialize_amount.FinalizeAmountActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".gold_loan.select_scheme.SelectSchemeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".account_details.closed_loans.ClosedLoansActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".gold_loan.GoldLoanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".payment.paytm.PaymentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".select_payment.SelectPaymentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".account_details.AccountDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".account_list.AccountListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+    </application>
+
+</manifest>
