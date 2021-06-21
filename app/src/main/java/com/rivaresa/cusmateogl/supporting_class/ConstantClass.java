@@ -53,7 +53,8 @@ public class ConstantClass {
 
     public static final String PREFS_DATA = "PrefesContent";
     public static final String IS_LOGIN = "IS_LOGIN";
-    public static final String BACKGROUND = "BACKGROUND";
+    public static final String BACKGROUND_TIME = "BACKGROUND_TIME";
+    public static final String FOREGROUND_TIME = "FOREGROUND_TIME";
 //    public static String PREFS_MPIN = "";
 
 //    public static String QR_SCND = "QRSCND";

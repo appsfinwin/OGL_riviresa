@@ -16,6 +16,7 @@ public abstract class BaseActivity extends AppCompatActivity
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     int activityCount=0;
+    long backgroundTime=0,foregroundTime=0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,24 +34,34 @@ public abstract class BaseActivity extends AppCompatActivity
 
     @Override
     public void foreground() {
-        if (activityCount!=1) {
 
-            editor.putBoolean(ConstantClass.BACKGROUND, false);
-            editor.apply();
-            boolean isLogin = sharedPreferences.getBoolean(ConstantClass.IS_LOGIN, false);
-            if (!isLogin) {
-                Intent intent = new Intent(this, LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-            }
-        }else {
-            activityCount=2;
+        foregroundTime= System.currentTimeMillis();
+        long total=foregroundTime-(sharedPreferences.getLong(ConstantClass.BACKGROUND_TIME,0));
+//        total=foregroundTime-backgroundTime;
+//        if (activityCount!=1) {
+
+
+//            boolean isLogin = sharedPreferences.getBoolean(ConstantClass.IS_LOGIN, false);
+//            if (!isLogin) {
+        if (total>300000) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         }
+            //}
+//        }else {
+//            activityCount=2;
+//        }
     }
     @Override
     public void background() {
-        editor.putBoolean(ConstantClass.BACKGROUND,true);
+//        editor.putBoolean(ConstantClass.BACKGROUND,true);
+//        editor.apply();
+
+        backgroundTime= System.currentTimeMillis();
+        editor.putLong(ConstantClass.BACKGROUND_TIME,backgroundTime);
         editor.apply();
     }
     @Override
@@ -58,12 +69,12 @@ public abstract class BaseActivity extends AppCompatActivity
         editor.putBoolean(ConstantClass.IS_LOGIN,false);
         editor.apply();
 
-        if (!sharedPreferences.getBoolean(ConstantClass.BACKGROUND,false)) {
+
             Intent intent = new Intent(this, LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-        }
+
     }
 
     @Override

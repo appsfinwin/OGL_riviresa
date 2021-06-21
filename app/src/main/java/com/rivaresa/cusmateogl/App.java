@@ -14,6 +14,8 @@ public class App extends Application implements LifecycleObserver {
 
     private static LogoutListener logoutListener = null;
     private static Timer timer = null;
+    private static int ONE_MINUTE=60000;
+    private static int FIVE_MINUTE=300000;
 
     @Override
     public void onCreate() {
@@ -35,7 +37,7 @@ public class App extends Application implements LifecycleObserver {
                    // log.d("App", "Session Destroyed");
                 }
             }
-        },  (300000));
+        },  (FIVE_MINUTE));
     }
 
     public static void resetSession() {
@@ -53,10 +55,12 @@ public class App extends Application implements LifecycleObserver {
         // you can perform your logout service here
         super.onTrimMemory(level);
         logoutListener.background();
+        userSessionStart();
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     public void onAppBackgrounded() {
+        //logoutListener.background();
 
     }
 
