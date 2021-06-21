@@ -52,6 +52,8 @@ public class FinalizeAmountViewmodel extends AndroidViewModel {
     ActivityFinalizeAmountBinding binding;
     ApiInterface apiInterface;
     public ObservableField<String> loanAmount=new ObservableField<>("");
+    public ObservableField<String> totalLoanAmount=new ObservableField<>("");
+    public ObservableField<String> settlementTotal=new ObservableField<>("");
     public ObservableField<Double> maxAmount=new ObservableField<>(0.0);
 
 
@@ -136,5 +138,13 @@ public class FinalizeAmountViewmodel extends AndroidViewModel {
 //        amountToPay.set(String.valueOf(bal));
 //        amountToPayInt.set(bal);
 
+    public void  onTextChange( CharSequence text) {
+        double l_amount= Double.parseDouble(text.toString())+ Double.parseDouble(settlementTotal.get());
+        totalLoanAmount.set(text+" +"+ settlementTotal.get()+ "="+l_amount);
+    }
 
+    public void setSettlementTotal()
+    {
+        //Double.parseDouble(loanAmount.get())>maxAmount.get()
+    }
 }

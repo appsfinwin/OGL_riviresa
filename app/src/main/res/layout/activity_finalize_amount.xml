@@ -86,7 +86,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_settlement"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
@@ -151,7 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="Enter Required Loan Amount"
+            android:text="Enter Required Amount"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -159,6 +159,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cardView4" />
 
         <EditText
+            android:onTextChanged="@{(text, start, before, count) -> viewmodel.onTextChange(text)}"
             android:id="@+id/et_loan_amount"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -177,18 +178,20 @@
             app:layout_constraintTop_toBottomOf="@+id/textView44" />
 
         <TextView
+
             android:id="@+id/textView45"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:gravity="center"
             android:text="The settlement amount of the last loan taken against above mentioned inventory, will be adjusted at the time of disbursement of new loan"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_loan_amount" />
+            app:layout_constraintTop_toBottomOf="@+id/textView148" />
 
         <Button
             android:id="@+id/button2"
@@ -211,6 +214,35 @@
             android:text="NEXT"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView45" />
+
+        <TextView
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:id="@+id/textView139"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Loan Amount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_loan_amount" />
+
+        <TextView
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:background="@color/white"
+            android:id="@+id/textView148"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="80dp"
+            android:text="@={viewmodel.totalLoanAmount}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView139" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

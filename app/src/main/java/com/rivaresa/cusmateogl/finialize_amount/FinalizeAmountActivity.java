@@ -25,7 +25,8 @@ public class FinalizeAmountActivity extends BaseActivity {
     FinalizeAmountViewmodel viewmodel;
     ActivityFinalizeAmountBinding binding;
     PaymentsAdapter adapter;
-    String scheme_code, scheme_name, scheme_interest, scheme_period, net_amount, scheme_period_type;
+    String scheme_code, scheme_name, scheme_interest,
+            scheme_period, net_amount, scheme_period_type,settlement_total;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +45,8 @@ public class FinalizeAmountActivity extends BaseActivity {
             scheme_interest = intent.getStringExtra("scheme_interest");
             scheme_period = intent.getStringExtra("scheme_period");
             scheme_period_type = intent.getStringExtra("scheme_period_type");
+            settlement_total = intent.getStringExtra("settlement_total");
+            viewmodel.settlementTotal.set(settlement_total);
 
         }
         setupRecyclerView(binding.rvSettlement);

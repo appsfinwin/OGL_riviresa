@@ -97,6 +97,7 @@ public class SelectSchemeActivity extends AppCompatActivity {
                             intent.putExtra("scheme_interest", rowSchemeAction.getSchemeData().getInterest());
                             intent.putExtra("scheme_period", rowSchemeAction.getSchemeData().getPeriod());
                             intent.putExtra("scheme_period_type", rowSchemeAction.getSchemeData().getPeriodtype());
+                            intent.putExtra("settlement_total", rowSchemeAction.getSchemeData().getSettlementTotal());
                             startActivity(intent);
                             overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 //                        }else {
