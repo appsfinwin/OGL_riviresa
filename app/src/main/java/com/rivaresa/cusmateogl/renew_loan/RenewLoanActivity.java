@@ -147,4 +147,13 @@ public class RenewLoanActivity extends BaseActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent1 = new Intent(RenewLoanActivity.this, HomeActivity.class);
+        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent1);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+    }
 }

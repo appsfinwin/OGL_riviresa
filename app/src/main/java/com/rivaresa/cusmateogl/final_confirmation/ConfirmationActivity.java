@@ -91,8 +91,7 @@ public class ConfirmationActivity extends BaseActivity {
                         break;
 
                     case ConfirmationAction.CLICK_CANCEL:
-                        finish();
-                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                        exitDialog();
                         break;
 
                     case ConfirmationAction.CLICK_CONFIRM:

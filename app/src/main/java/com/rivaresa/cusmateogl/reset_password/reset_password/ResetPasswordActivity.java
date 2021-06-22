@@ -1,5 +1,4 @@
 package com.rivaresa.cusmateogl.reset_password.reset_password;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
