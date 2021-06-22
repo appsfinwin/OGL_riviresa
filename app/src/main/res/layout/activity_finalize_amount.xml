@@ -90,13 +90,11 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView43"
-                    app:layout_constraintVertical_bias="0.0"
                     tools:listitem="@layout/row_payment" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -114,6 +112,8 @@
                         android:id="@+id/textView00"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
                         android:text="Net Amount Available"
                         android:textAlignment="center"
                         android:textColor="@color/black"
@@ -121,12 +121,13 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/view2"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView151" />
 
                     <View
                         android:id="@+id/view2"
                         android:layout_width="1dp"
                         android:layout_height="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -135,13 +136,42 @@
                         android:id="@+id/tv_net_amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/view2"
+                        app:layout_constraintTop_toBottomOf="@+id/textView152" />
+
+                    <TextView
+                        android:id="@+id/textView151"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Settlement Total"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toStartOf="@+id/view2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:id="@+id/textView152"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@{viewmodel.settlementTotal}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/view2"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -149,7 +179,7 @@
             android:id="@+id/textView44"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="Enter Required Amount"
             android:textColor="@color/white"
@@ -159,21 +189,22 @@
             app:layout_constraintTop_toBottomOf="@+id/cardView4" />
 
         <EditText
-            android:onTextChanged="@{(text, start, before, count) -> viewmodel.onTextChange(text)}"
             android:id="@+id/et_loan_amount"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="80dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/button_rectangle_background"
             android:gravity="center"
             android:inputType="number"
             android:maxLength="8"
             android:maxLines="1"
+            android:onTextChanged="@{(text, start, before, count) -> viewmodel.onTextChange(text)}"
             android:text="@={viewmodel.loanAmount}"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView44" />
 
@@ -191,7 +222,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView148" />
+            app:layout_constraintTop_toBottomOf="@+id/et_loan_amount" />
 
         <Button
             android:id="@+id/button2"
@@ -214,35 +245,6 @@
             android:text="NEXT"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView45" />
-
-        <TextView
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:id="@+id/textView139"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Loan Amount"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_loan_amount" />
-
-        <TextView
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:background="@color/white"
-            android:id="@+id/textView148"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginEnd="80dp"
-            android:text="@={viewmodel.totalLoanAmount}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView139" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

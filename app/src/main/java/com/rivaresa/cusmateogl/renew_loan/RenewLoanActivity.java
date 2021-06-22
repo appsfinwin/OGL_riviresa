@@ -98,7 +98,7 @@ public class RenewLoanActivity extends BaseActivity {
 
                     case RenewLoanAction.CLICK_OK:
                         Intent intent1 = new Intent(RenewLoanActivity.this, HomeActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent1);
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         break;

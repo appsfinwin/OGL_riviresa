@@ -58,7 +58,10 @@ public class ConfirmationViewmodel extends AndroidViewModel {
     public ObservableField<String> interest=new ObservableField<>("");
     public ObservableField<String> eligibleLoan=new ObservableField<>("");
     public ObservableField<String> loanAmount=new ObservableField<>("");
+    public ObservableField<String> calculatedLoanAmount=new ObservableField<>("");
     public ObservableField<String> termsAndCondition=new ObservableField<>("");
+    public ObservableField<String> settlementAmount=new ObservableField<>("");
+    public ObservableField<String> requiredAmount=new ObservableField<>("");
 
     Application application;
     MutableLiveData<ConfirmationAction> mAction;

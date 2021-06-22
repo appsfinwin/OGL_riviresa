@@ -23,7 +23,10 @@ public class ConfirmationActivity extends BaseActivity {
 
     ActivityConfirmationBinding binding;
     ConfirmationViewmodel viewmodel;
-    String scheme_code, scheme_name, scheme_interest, scheme_period, net_amount, loanAmount, inventoryNo, customerId, scheme_period_type;
+    String scheme_code, scheme_name,
+            scheme_interest, scheme_period, net_amount,
+            loanAmount, inventoryNo, customerId,
+            scheme_period_type,settlement_total,requested_amount;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -44,10 +47,16 @@ public class ConfirmationActivity extends BaseActivity {
             scheme_interest = intent.getStringExtra("scheme_interest");
             scheme_period = intent.getStringExtra("scheme_period");
             loanAmount = intent.getStringExtra("loan_amount");
+            settlement_total = intent.getStringExtra("settlement_total");
+            requested_amount = intent.getStringExtra("requested_amount");
             scheme_period_type = intent.getStringExtra("scheme_period_type");
             inventoryNo = sharedPreferences.getString("inventory_number", "");
             customerId = sharedPreferences.getString("cust_id", "");
-            viewmodel.getAppliactionDetails(inventoryNo, scheme_code, customerId, loanAmount);
+
+            viewmodel.calculatedLoanAmount.set(loanAmount);
+            viewmodel.requiredAmount.set(requested_amount);
+            viewmodel.settlementAmount.set(settlement_total);
+            viewmodel.getAppliactionDetails(inventoryNo, scheme_code, customerId, requested_amount);
         }
         binding.parentScroll.setOnTouchListener(new View.OnTouchListener() {
 

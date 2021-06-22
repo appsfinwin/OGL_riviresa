@@ -87,6 +87,9 @@ public class FinalizeAmountActivity extends BaseActivity {
                         intentNext.putExtra("scheme_period", scheme_period);
                         intentNext.putExtra("net_amount", net_amount);
                         intentNext.putExtra("scheme_period_type", scheme_period_type);
+                        intentNext.putExtra("settlement_total", settlement_total);
+                        intentNext.putExtra("requested_amount", viewmodel.loanAmount.get());
+                        intentNext.putExtra("loan_amount", viewmodel.totalLoanAmount.get());
                         startActivity(intentNext);
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         break;
