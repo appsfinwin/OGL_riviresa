@@ -127,9 +127,10 @@ public class RenewLoanActivity extends BaseActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent1 = new Intent(RenewLoanActivity.this, HomeActivity.class);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent1);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                warningDialog.dismiss();
             }
         });
         warningDialog.setContentView(view);

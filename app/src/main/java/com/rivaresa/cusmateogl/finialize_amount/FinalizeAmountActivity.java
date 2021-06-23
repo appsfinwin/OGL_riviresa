@@ -18,13 +18,12 @@ import com.rivaresa.cusmateogl.databinding.ActivityFinalizeAmountBinding;
 import com.rivaresa.cusmateogl.final_confirmation.ConfirmationActivity;
 import com.rivaresa.cusmateogl.finialize_amount.action.FinalizeAmountAction;
 import com.rivaresa.cusmateogl.home.HomeActivity;
-import com.rivaresa.cusmateogl.payment.paytm.adapter.PaymentsAdapter;
 
 public class FinalizeAmountActivity extends BaseActivity {
 
     FinalizeAmountViewmodel viewmodel;
     ActivityFinalizeAmountBinding binding;
-    PaymentsAdapter adapter;
+    AccountsAdapter adapter;
     String scheme_code, scheme_name, scheme_interest,
             scheme_period, net_amount, scheme_period_type,settlement_total;
 
@@ -127,7 +126,7 @@ public class FinalizeAmountActivity extends BaseActivity {
 
 
     private void setupRecyclerView(RecyclerView recyclerView) {
-        adapter = new PaymentsAdapter();
+        adapter = new AccountsAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

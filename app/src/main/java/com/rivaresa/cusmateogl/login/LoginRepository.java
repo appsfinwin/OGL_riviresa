@@ -104,7 +104,15 @@ public class LoginRepository {
 
                     @Override
                     public void onError(Throwable e) {
-                        mAction.setValue(new LoginAction(LoginAction.API_ERROR,e.getMessage()));
+                        if (e instanceof SocketTimeoutException)
+                        {
+                            mAction.setValue(new LoginAction(LoginAction.API_ERROR,"Timeout! Please try again later"));
+                        }else if (e instanceof UnknownHostException)
+                        {
+                            mAction.setValue(new LoginAction(LoginAction.API_ERROR,"No Internet"));
+                        }else {
+                            mAction.setValue(new LoginAction(LoginAction.API_ERROR, e.getMessage()));
+                        }
                     }
                 });
 

@@ -51,7 +51,6 @@
                 android:layout_height="@dimen/payment_height"
                 android:layout_marginTop="16dp"
                 android:background="@null"
-
                 android:onClick="@{viewmodel::clickPartPayment}"
                 android:padding="3dp"
                 android:scaleType="centerInside"
@@ -69,7 +68,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@null"
-
+                android:visibility="gone"
                 android:onClick="@{viewmodel::clickFullPayment}"
                 android:padding="3dp"
                 android:scaleType="centerInside"

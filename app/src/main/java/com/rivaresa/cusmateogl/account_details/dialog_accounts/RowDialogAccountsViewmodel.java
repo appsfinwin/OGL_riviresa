@@ -6,15 +6,35 @@ import androidx.databinding.BaseObservable;
 import androidx.lifecycle.MutableLiveData;
 
 import com.rivaresa.cusmateogl.account_details.pojo.Table;
-import com.rivaresa.cusmateogl.login.pojo.BankDetail;
 
 public class RowDialogAccountsViewmodel extends BaseObservable {
 
     Table bankDetail;
     MutableLiveData<ActionDialogAccounts> mAction;
+    String bankName,accountNumber,address,ifsc;
     public RowDialogAccountsViewmodel(Table bankDetail, MutableLiveData<ActionDialogAccounts> mAction) {
         this.bankDetail=bankDetail;
         this.mAction=mAction;
+    }
+
+    public String getBankName() {
+        bankName=bankDetail.getBank();
+        return bankName;
+    }
+
+    public String getAccountNumber() {
+        accountNumber=bankDetail.getAccNo();
+        return accountNumber;
+    }
+
+    public String getAddress() {
+        address=bankDetail.getBranch();
+        return address;
+    }
+
+    public String getIfsc() {
+        ifsc=bankDetail.getIFSCCode();
+        return ifsc;
     }
 
     public void setBankDetails(Table bankDetail) {

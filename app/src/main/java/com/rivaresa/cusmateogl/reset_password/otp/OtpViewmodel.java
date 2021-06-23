@@ -101,6 +101,7 @@ public class OtpViewmodel extends AndroidViewModel {
     }
 
     public void signUp() {
+
         Map<String, Object> jsonParams = new HashMap<>();
         jsonParams.put("account_no", DataHolder.getInstance().sIgnupData.getAccountNo());
         jsonParams.put("mobile_no", DataHolder.getInstance().sIgnupData.getMobileNo());

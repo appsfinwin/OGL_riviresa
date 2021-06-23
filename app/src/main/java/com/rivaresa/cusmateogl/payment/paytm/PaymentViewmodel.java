@@ -52,6 +52,8 @@ public class PaymentViewmodel extends AndroidViewModel {
     public ObservableField<String> balance = new ObservableField<>("");
     public ObservableField<String> amountToPay = new ObservableField<>("");
     public ObservableField<Double> amountToPayInt = new ObservableField<>(0.0);
+    public ObservableField<Double> partPaymentAmount = new ObservableField<>(0.0);
+    public ObservableField<String> partPaymentMessage = new ObservableField<>("");
     public ObservableField<String> paymentMode = new ObservableField<>("");
 
     @Override
@@ -107,7 +109,12 @@ public class PaymentViewmodel extends AndroidViewModel {
         }
 
         balance.set(String.valueOf(bal));
-
+        partPaymentAmount.set(bal-1000);
+        if (partPaymentAmount.get()<0){
+            partPaymentMessage.set("");
+        }else {
+            partPaymentMessage.set("Enter an amount les than  ₹" + (bal - 1000));
+        }
     }
 
     public void setAmount(List<SettlementData> settlementData) {
@@ -119,7 +126,8 @@ public class PaymentViewmodel extends AndroidViewModel {
                 bal = bal + Double.parseDouble(data.getBalance());
             }
         }
-
+        partPaymentAmount.set(bal-1000);
+        partPaymentMessage.set("Enter an amount les than  ₹"+(bal-1000));
         amountToPay.set(String.valueOf(bal));
         amountToPayInt.set(bal);
     }
@@ -156,12 +164,20 @@ public class PaymentViewmodel extends AndroidViewModel {
 
     public void clickPaytm(View view) {
 //        setChecksum();
-        amountToPayInt.set(Double.parseDouble(amountToPay.get()));
+        if (amountToPay.get().equals("")) {
+            amountToPayInt.set(Double.parseDouble(amountToPay.get()));
+        }
         if (paymentMode.get().equals("part_payment") && amountToPay.get().equals("")) {
             showSnakbar("Please enter amount!", view);
         }
         else if (amountToPayInt.get() <= 0) {
             showSnakbar(amountToPay.get() + " is not a valid amount!", view);
+        }else if(paymentMode.get().equals("part_payment") &&(partPaymentAmount.get()>0) &&(Double.parseDouble(amountToPay.get()))>partPaymentAmount.get())
+        {
+            showSnakbar("Amount should less than "+partPaymentAmount.get(), view);
+        }else if(paymentMode.get().equals("part_payment") && (partPaymentAmount.get()<0))
+        {
+            showSnakbar("Payment cannot process with entered amount. Please contact branch for further details!", view);
         }
         else {
             mAction.setValue(new PaymentAction(PaymentAction.CLICK_PAY));
