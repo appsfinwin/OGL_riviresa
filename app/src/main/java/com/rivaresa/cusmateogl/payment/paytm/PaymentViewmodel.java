@@ -164,7 +164,7 @@ public class PaymentViewmodel extends AndroidViewModel {
 
     public void clickPaytm(View view) {
 //        setChecksum();
-        if (amountToPay.get().equals("")) {
+        if (!amountToPay.get().equals("")) {
             amountToPayInt.set(Double.parseDouble(amountToPay.get()));
         }
         if (paymentMode.get().equals("part_payment") && amountToPay.get().equals("")) {
