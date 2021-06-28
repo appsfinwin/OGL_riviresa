@@ -113,7 +113,7 @@ public class PaymentViewmodel extends AndroidViewModel {
         if (partPaymentAmount.get()<0){
             partPaymentMessage.set("");
         }else {
-            partPaymentMessage.set("Enter an amount les than  ₹" + (bal - 1000));
+            partPaymentMessage.set("Enter an amount less than  ₹" + (bal - 1000));
         }
     }
 
@@ -127,7 +127,7 @@ public class PaymentViewmodel extends AndroidViewModel {
             }
         }
         partPaymentAmount.set(bal-1000);
-        partPaymentMessage.set("Enter an amount les than  ₹"+(bal-1000));
+        partPaymentMessage.set("Enter an amount less than  ₹"+(bal-1000));
         amountToPay.set(String.valueOf(bal));
         amountToPayInt.set(bal);
     }

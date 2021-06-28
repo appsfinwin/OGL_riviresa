@@ -48,11 +48,11 @@
                     android:layout_height="wrap_content"
                     android:onClick="@{viewmodel::clickBack}"
                     android:rotation="180"
-                    android:tint="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/arrow_right_vector" />
+                    app:srcCompat="@drawable/arrow_right_vector"
+                    app:tint="@color/white" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -188,7 +188,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="36dp"
                         android:layout_marginEnd="16dp"
-                        android:background="@color/colorAccent"
+                        android:background="@drawable/bg_button_red"
                         android:onClick="@{viewmodel::clickSignUp}"
                         android:text="Sign up"
                         android:textColor="@color/white"

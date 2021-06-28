@@ -297,7 +297,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="16dp"
-                        android:background="@color/colorPrimary"
+                        android:background="@drawable/bg_button_red"
                         android:text="OK"
                         android:onClick="@{viewmodel::clickOk}"
                         android:textColor="@color/white"

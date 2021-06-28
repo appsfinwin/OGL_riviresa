@@ -54,12 +54,14 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/part_pay_with_paytm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="#31beff"
+            android:backgroundTint="#31beff"
+            app:backgroundTint="@color/blue_pay_button"
             android:text="Proceed "
             android:textAllCaps="false"
             android:textColor="#fff"

@@ -23,5 +23,6 @@
     <color name="edit_text_highlight">#ffffff</color>
     <color name="bg_loading">#84000000</color>
     <color name="trsnsperent">#00000000</color>
+    <color name="blue_pay_button">#31beff</color>
 
 </resources>
