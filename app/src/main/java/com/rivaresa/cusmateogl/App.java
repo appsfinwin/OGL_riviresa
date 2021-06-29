@@ -67,6 +67,8 @@ public class App extends Application implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void onAppForegrounded() {
         //Log.d("MyApp", "App in foreground")
-        logoutListener.foreground();
+        if (logoutListener!=null) {
+            logoutListener.foreground();
+        }
     }
 }

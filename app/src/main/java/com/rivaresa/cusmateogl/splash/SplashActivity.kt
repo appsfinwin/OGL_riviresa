@@ -8,7 +8,7 @@ import com.rivaresa.cusmateogl.BaseActivity
 import com.rivaresa.cusmateogl.R
 import com.rivaresa.cusmateogl.login.LoginActivity
 
-class SplashActivity : BaseActivity() {
+class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
