@@ -78,6 +78,8 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
+                                android:paddingLeft="@dimen/dimen_10dp"
+                                android:paddingRight="@dimen/dimen_10dp"
                                 android:id="@+id/textView46"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -146,23 +148,26 @@
                             <Button
                                 android:id="@+id/button5"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="40dp"
                                 android:layout_marginStart="4dp"
                                 android:layout_marginEnd="8dp"
+                                android:background="@drawable/bg_button"
                                 android:onClick="@{viewmodel::clickDate}"
                                 android:text="@{viewmodel.selectDate}"
+                                android:textColor="@color/colorPrimary"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/view7"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <EditText
+                                android:background="@drawable/bg_button"
                                 android:id="@+id/editTextTextPersonName4"
                                 android:layout_width="0dp"
                                 android:layout_height="40dp"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginEnd="4dp"
-                                android:background="@color/white"
+                                
                                 android:ems="10"
                                 android:hint="type amount"
                                 android:inputType="number"
@@ -187,11 +192,13 @@
                         <Button
                             android:id="@+id/button4"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="16dp"
                             android:layout_marginBottom="8dp"
+                            android:background="@drawable/bg_button"
                             android:onClick="@{viewmodel::clickCalculator}"
                             android:text="Calculate"
+                            android:textColor="@color/colorPrimary"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
