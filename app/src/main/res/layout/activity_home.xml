@@ -25,6 +25,8 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:fontFamily="@font/assistant_medium"
+                android:textAllCaps="true"
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.rivaresa.cusmateogl.select_payment.SelectPaymentViewmodel" />
@@ -17,7 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout8"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_gravity="center"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -34,11 +35,12 @@
                 android:layout_height="@dimen/payment_height"
                 android:layout_marginTop="16dp"
                 android:background="@null"
-
-                android:onClick="@{viewmodel::clickInterestPayment}"
                 android:padding="3dp"
+
+
                 android:scaleType="centerInside"
                 android:src="@drawable/interest_payment_icon"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,10 +53,11 @@
                 android:layout_height="@dimen/payment_height"
                 android:layout_marginTop="16dp"
                 android:background="@null"
-                android:onClick="@{viewmodel::clickPartPayment}"
                 android:padding="3dp"
+
                 android:scaleType="centerInside"
                 android:src="@drawable/part_payment_icon"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.6"
                 app:layout_constraintStart_toStartOf="parent"
@@ -68,16 +71,112 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@null"
-                android:visibility="gone"
                 android:onClick="@{viewmodel::clickFullPayment}"
                 android:padding="3dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/full_payment_icon"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_part_payment"
                 tools:ignore="ContentDescription" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.22000003">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_cornered"
+                    android:elevation="@dimen/dimen_10dp"
+                    android:onClick="@{viewmodel::clickInterestPayment}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="100dp"
+                        android:layout_height="65dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="24dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_interest" />
+
+                    <TextView
+                        android:id="@+id/textView156"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="24dp"
+                        android:fontFamily="@font/assistant_medium"
+                        android:text="INTEREST PAYMENT"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="@drawable/bg_cornered"
+                    android:elevation="@dimen/dimen_10dp"
+                    android:onClick="@{viewmodel::clickPartPayment}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintLayout28"
+                    app:layout_constraintStart_toStartOf="@+id/constraintLayout28"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout28">
+
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="100dp"
+                        android:layout_height="65dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="24dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_part_payment" />
+
+                    <TextView
+
+                        android:id="@+id/textView157"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="24dp"
+                        android:fontFamily="@font/assistant_medium"
+                        android:text="PART PAYMENT"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -98,6 +197,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Name"
+                android:fontFamily="@font/assistant_medium"
+                android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -144,12 +245,12 @@
                     android:background="@color/colorPrimary">
 
                     <ImageView
-                        android:onClick="@{viewmodel::clickSettings}"
                         android:id="@+id/imageView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:elevation="@dimen/dimen_3dp"
+                        android:onClick="@{viewmodel::clickSettings}"
                         android:padding="10dp"
                         android:paddingRight="@dimen/dimen_15dp"
                         app:layout_constraintBottom_toBottomOf="parent"
