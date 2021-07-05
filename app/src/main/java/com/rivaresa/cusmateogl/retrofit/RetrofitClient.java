@@ -54,7 +54,7 @@ public class RetrofitClient {
 
             retrofitAxis = new Retrofit.Builder()
                     //.baseUrl("https://ogluvnl.digicob.in/")
-                    .baseUrl("http://riviresapaymentbridge.digicob.in/pgmanager/easypay/v1/")
+                    .baseUrl("https://riviresapaymentbridge.digicob.in/pgmanager/easypay/v1/")
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
