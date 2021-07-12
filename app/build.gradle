@@ -10,8 +10,8 @@ android {
         applicationId "com.rivaresa.cusmateogl"
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 3
-        versionName "1.2"
+        versionCode 7
+        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -44,6 +44,9 @@ android {
     }
 
     useLibrary 'org.apache.http.legacy'
+    lintOptions {
+        checkReleaseBuilds false
+    }
 }
 
 dependencies {
@@ -126,5 +129,5 @@ dependencies {
     //razorpay
     implementation 'com.razorpay:checkout:1.5.16'
     implementation 'com.github.f0ris.sweetalert:library:1.5.1'//sweetalert Dialogue
-
+    implementation 'org.jsoup:jsoup:1.8.3'
 }

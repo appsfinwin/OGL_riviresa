@@ -45,7 +45,9 @@ public class App extends Application implements LifecycleObserver {
     }
 
     public static void registerSessionListener(LogoutListener listener) {
-        logoutListener = listener;
+        if (logoutListener!=null) {
+            logoutListener = listener;
+        }
     }
 
 
@@ -54,8 +56,10 @@ public class App extends Application implements LifecycleObserver {
         // this method is called when the app goes in background.
         // you can perform your logout service here
         super.onTrimMemory(level);
-        logoutListener.background();
-        userSessionStart();
+        if (logoutListener!=null) {
+            logoutListener.background();
+            userSessionStart();
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)

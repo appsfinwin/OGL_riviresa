@@ -30,6 +30,7 @@ import com.rivaresa.cusmateogl.R
 import com.rivaresa.cusmateogl.databinding.ActivityAxisPaymentBinding
 import com.rivaresa.cusmateogl.payment.action.PaymentAction
 import com.rivaresa.cusmateogl.renew_loan.RenewLoanActivity
+import com.rivaresa.cusmateogl.supporting_class.ConstantClass
 import com.rivaresa.cusmateogl.utils.DataHolder
 import com.rivaresa.cusmateogl.utils.Services
 
@@ -178,7 +179,7 @@ class AxisPaymentActivity : BaseActivity() {
 //                    return true
 //                }
 //               else
-                if (url.startsWith("http://riviresapaymentbridge.digicob.in/pgmanager/easypay/v1/recresponse")) {
+                if (url.startsWith(ConstantClass.AXIS_BASE_URL+"recresponse")) {
                     viewModel.initLoading(this@AxisPaymentActivity)
                     var token = Uri.parse(url).getQueryParameter("i")
                     Log.d(TAG, "axis_token: $token ")

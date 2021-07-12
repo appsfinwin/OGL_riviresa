@@ -1,5 +1,7 @@
 package com.rivaresa.cusmateogl.retrofit;
 
+import com.rivaresa.cusmateogl.supporting_class.ConstantClass;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -29,8 +31,7 @@ public class RetrofitClient {
                     //.baseUrl("https://ogluvnl.digicob.in/")
                     //.baseUrl("http://192.168.0.221:170/")
                     .baseUrl("http://testriviresaogl.digicob.in/")//rivaresa
-                    //.baseUrl("http://www.finwintechnologies.com:6940/")
-                    //.baseUrl("http://custmatetest.digicob.in/")
+
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
@@ -47,14 +48,14 @@ public class RetrofitClient {
 
 
             final OkHttpClient client = new OkHttpClient.Builder()
-                    .readTimeout(61, TimeUnit.SECONDS)
+                    .readTimeout(2, TimeUnit.MINUTES)
                     .addInterceptor(logging)
-                    .connectTimeout(61, TimeUnit.SECONDS)
+                    .connectTimeout(2, TimeUnit.MINUTES)
                     .build();
 
             retrofitAxis = new Retrofit.Builder()
                     //.baseUrl("https://ogluvnl.digicob.in/")
-                    .baseUrl("https://riviresapaymentbridge.digicob.in/pgmanager/easypay/v1/")
+                    .baseUrl(ConstantClass.AXIS_BASE_URL)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
