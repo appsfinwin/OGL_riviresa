@@ -21,6 +21,19 @@ public abstract class BaseActivity extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+//        Window window = getWindow();
+//
+//// clear FLAG_TRANSLUCENT_STATUS flag:
+//        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//
+//// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//
+//// finally change the color
+//        window.setStatusBarColor(ContextCompat.getColor(this,R.color.white));
+
         sharedPreferences=getSharedPreferences("login",MODE_PRIVATE);
         editor=sharedPreferences.edit();
         activityCount=1;
@@ -45,6 +58,7 @@ public abstract class BaseActivity extends AppCompatActivity
 //            if (!isLogin) {
         if (total>300000) {
             Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
@@ -72,8 +86,10 @@ public abstract class BaseActivity extends AppCompatActivity
 
             Intent intent = new Intent(this, LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+            finish();
 
     }
 

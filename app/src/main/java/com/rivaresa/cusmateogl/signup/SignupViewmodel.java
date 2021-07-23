@@ -84,10 +84,10 @@ public class SignupViewmodel extends AndroidViewModel {
             generateOtp();
         }else {
             if (os_accountNumber.get().equals("")) {
-                showSnakbar("Account number cannot be empty");
+                showSnakbar(view,"Account number cannot be empty");
             }else if (os_name.get().equals(""))
             {
-                showSnakbar("Name cannot be empty");
+                showSnakbar(view,"Name cannot be empty");
             }
 //            else if (os_mobileNumber.get().equals(""))
 //            {
@@ -99,20 +99,20 @@ public class SignupViewmodel extends AndroidViewModel {
 //            }
             else if (os_password.get().equals("") ||os_confirmPassword.get().equals(""))
             {
-                showSnakbar("Password be empty");
+                showSnakbar(view,"Password be empty");
             }
             else if (!os_password.get().equals(os_confirmPassword.get()))
             {
-                showSnakbar("Passwords do not match!!");
+                showSnakbar(view,"Passwords do not match!!");
             }
         }
 
     }
 
-    private void showSnakbar(String message) {
+    private void showSnakbar(View view,String message) {
 
         Snackbar snackbar = Snackbar
-                .make(binding.mainLayout, message, Snackbar.LENGTH_LONG);
+                .make(view, message, Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 

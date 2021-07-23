@@ -45,9 +45,9 @@ public class App extends Application implements LifecycleObserver {
     }
 
     public static void registerSessionListener(LogoutListener listener) {
-        if (logoutListener!=null) {
+
             logoutListener = listener;
-        }
+
     }
 
 
@@ -58,7 +58,7 @@ public class App extends Application implements LifecycleObserver {
         super.onTrimMemory(level);
         if (logoutListener!=null) {
             logoutListener.background();
-            userSessionStart();
+            //userSessionStart();
         }
     }
 

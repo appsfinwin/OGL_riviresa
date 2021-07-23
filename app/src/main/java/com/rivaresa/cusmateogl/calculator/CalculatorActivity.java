@@ -21,48 +21,47 @@ public class CalculatorActivity extends BaseActivity {
     CalculatorViewmodel viewmodel;
     ActivityCalculatorBinding binding;
     CalculatorAdapter adapter;
-    String scheme_code,scheme_name,scheme_interest,scheme_period,net_amount;
+    String scheme_code, scheme_name, scheme_interest, scheme_period, net_amount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       binding= DataBindingUtil.setContentView(this,R.layout.activity_calculator);
-       viewmodel=new ViewModelProvider(this).get(CalculatorViewmodel.class);
-       binding.setViewmodel(viewmodel);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_calculator);
+        viewmodel = new ViewModelProvider(this).get(CalculatorViewmodel.class);
+        binding.setViewmodel(viewmodel);
 
 
-       setupRecyclerView(binding.rvCalculator);
+        setupRecyclerView(binding.rvCalculator);
         binding.layoutEstimatedAmount.setVisibility(View.GONE);
-       viewmodel.setActivity(this);
-       viewmodel.setBinding(binding);
+        viewmodel.setActivity(this);
+        viewmodel.setBinding(binding);
 
-        Intent intent=getIntent();
-        if (intent!=null)
-        {
+        Intent intent = getIntent();
+        if (intent != null) {
 
-            net_amount=intent.getStringExtra("net_amount");
-            scheme_code=intent.getStringExtra("scheme_code");
-            scheme_name=intent.getStringExtra("scheme_name");
-            scheme_interest=intent.getStringExtra("scheme_interest");
-            scheme_period=intent.getStringExtra("scheme_period");
+            net_amount = intent.getStringExtra("net_amount");
+            scheme_code = intent.getStringExtra("scheme_code");
+            scheme_name = intent.getStringExtra("scheme_name");
+            scheme_interest = intent.getStringExtra("scheme_interest");
+            scheme_period = intent.getStringExtra("scheme_period");
 
-            viewmodel.setScheme(scheme_code,scheme_name,net_amount);
+            viewmodel.setScheme(scheme_code, scheme_name, net_amount);
         }
-       viewmodel.getmAction().observe(this, new Observer<CalculatorAction>() {
-           @Override
-           public void onChanged(CalculatorAction calculatorAction) {
-               viewmodel.cancelLoading();
-               switch (calculatorAction.getAction())
-               {
-                   case CalculatorAction.CALCULATE_SUCCESS:
-                       setupRecyclerView(binding.rvCalculator);
-                       binding.layoutEstimatedAmount.setVisibility(View.VISIBLE);
-                       adapter.setCalculatorData(calculatorAction.getCalculatorResponse().getData().getData());
-                       adapter.notifyDataSetChanged();
-                       viewmodel.setData(calculatorAction.getCalculatorResponse().getData());
-                       break;
-               }
-           }
-       });
+        viewmodel.getmAction().observe(this, new Observer<CalculatorAction>() {
+            @Override
+            public void onChanged(CalculatorAction calculatorAction) {
+                viewmodel.cancelLoading();
+                switch (calculatorAction.getAction()) {
+                    case CalculatorAction.CALCULATE_SUCCESS:
+                        setupRecyclerView(binding.rvCalculator);
+                        binding.layoutEstimatedAmount.setVisibility(View.VISIBLE);
+                        adapter.setCalculatorData(calculatorAction.getCalculatorResponse().getData().getData());
+                        adapter.notifyDataSetChanged();
+                        viewmodel.setData(calculatorAction.getCalculatorResponse().getData());
+                        break;
+                }
+            }
+        });
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {

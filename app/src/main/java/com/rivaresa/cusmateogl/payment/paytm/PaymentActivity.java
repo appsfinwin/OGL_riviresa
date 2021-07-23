@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class PaymentActivity extends BaseActivity implements PaymentResultListen
     PaymentsAdapter adapter;
     private static final String TAG = "PaymentActivity";
     Intent paytmIntent;
+    SharedPreferences sharedPreferences;
 
     public static final String PAYTM_APP_PACKAGE = "net.one97.paytm";
     @Override
@@ -54,20 +56,29 @@ public class PaymentActivity extends BaseActivity implements PaymentResultListen
         binding = DataBindingUtil.setContentView(this, R.layout.activity_payment);
         viewmodel = new ViewModelProvider(this).get(PaymentViewmodel.class);
         binding.setViewmodel(viewmodel);
-
+        sharedPreferences=getSharedPreferences("login",MODE_PRIVATE);
 
         viewmodel.setBinding(binding);
         Intent intent = getIntent();
-        account_number = intent.getStringExtra("account_number");
-        payment_type = intent.getStringExtra("payment_type");
-        if (!payment_type.equals("")) {
-            getPaymentType(payment_type);
-            viewmodel.paymentMode.set(payment_type);
-        }
+        account_number=sharedPreferences.getString("account_number","");
+        selectInterestPayment();
+//        payment_type = intent.getStringExtra("payment_type");
+//        if (!payment_type.equals("")) {
+//            getPaymentType(payment_type);
+//            viewmodel.paymentMode.set(payment_type);
+//        }
 
 
         // Toast.makeText(this, payment_type, Toast.LENGTH_SHORT).show();
         setupRecyclerView(binding.rvPayment);
+
+        binding.tvInterestPayment.setOnClickListener(v -> {
+            selectInterestPayment();
+        });
+
+        binding.tvPartPayment.setOnClickListener(v -> {
+          selectPartPayment();
+        });
 
         //aytmSdk();
        // startPayment();
@@ -157,6 +168,26 @@ public class PaymentActivity extends BaseActivity implements PaymentResultListen
         });
 
 
+    }
+
+    private void selectPartPayment() {
+        binding.tvPartPayment.setBackgroundColor(getResources().getColor(R.color.white));
+        binding.tvInterestPayment.setBackgroundColor(getResources().getColor(R.color.l_gray));
+        binding.tvPartPayment.setElevation(3);
+        binding.tvInterestPayment.setElevation(0);
+        viewmodel.paymentMode.set("part_payment");
+        getPaymentType("part_payment");
+        payment_type="part_payment";
+    }
+
+    private void selectInterestPayment() {
+        binding.tvInterestPayment.setBackgroundColor(getResources().getColor(R.color.white));
+        binding.tvPartPayment.setBackgroundColor(getResources().getColor(R.color.l_gray));
+        binding.tvInterestPayment.setElevation(3);
+        binding.tvPartPayment.setElevation(0);
+        viewmodel.paymentMode.set("interest_payment");
+        getPaymentType("interest_payment");
+        payment_type="interest_payment";
     }
 
     private String getPaytmVersion(Context context) {

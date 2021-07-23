@@ -124,7 +124,7 @@ public class GoldLoanViewmodel extends AndroidViewModel {
             initLoading(context);
             getTermsAndConditions();
             binding.btnContinue.setEnabled(true);
-            binding.btnContinue.setBackgroundColor(getApplication().getColor(R.color.white));
+            binding.btnContinue.setBackgroundColor(getApplication().getColor(R.color.colorPrimary));
         } else {
             binding.btnContinue.setBackgroundColor(getApplication().getColor(R.color.gray));
             binding.btnContinue.setEnabled(false);

@@ -29,7 +29,7 @@ import com.rivaresa.cusmateogl.databinding.ActivityAccountListBinding;
 import com.rivaresa.cusmateogl.databinding.DialogLayoutInventoryBinding;
 import com.rivaresa.cusmateogl.gold_loan.select_scheme.SelectSchemeActivity;
 import com.rivaresa.cusmateogl.home.HomeActivity;
-import com.rivaresa.cusmateogl.select_payment.SelectPaymentActivity;
+import com.rivaresa.cusmateogl.payment.paytm.PaymentActivity;
 
 public class AccountListActivity extends BaseActivity {
 
@@ -206,7 +206,7 @@ public class AccountListActivity extends BaseActivity {
                         editor.commit();
 
                         if (from.equals("home")) {
-                            Intent intent = new Intent(AccountListActivity.this, SelectPaymentActivity.class);
+                            Intent intent = new Intent(AccountListActivity.this, PaymentActivity.class);
                             startActivity(intent);
                             overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         }else if (from.equals("goldLoan")){

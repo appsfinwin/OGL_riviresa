@@ -13,13 +13,16 @@
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
+        android:background="@color/bg_yellow"
         tools:context=".contact.ContactActivity">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/bg_white_round"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -27,40 +30,18 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary">
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.454"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/nfc_toolbar_logo" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView2">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ScrollView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -82,12 +63,13 @@
                                 android:layout_marginStart="8dp"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginEnd="8dp"
-                                android:background="@drawable/bg_red"
+                                android:background="@drawable/bg_round_grey"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
 
                                 <TextView
+                                    android:fontFamily="@font/comfortaa"
                                     android:id="@+id/textView115"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
@@ -96,7 +78,7 @@
                                     android:layout_marginEnd="42dp"
                                     android:text="@{viewmodel.contactName}"
                                     android:textAlignment="center"
-                                    android:textColor="@color/white"
+                                    android:textColor="@color/black"
                                     android:textSize="@dimen/heading"
                                     android:textStyle="bold"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -104,6 +86,7 @@
                                     app:layout_constraintTop_toTopOf="parent" />
 
                                 <TextView
+                                    android:fontFamily="@font/comfortaa"
                                     android:id="@+id/textView116"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
@@ -112,7 +95,7 @@
                                     android:layout_marginEnd="32dp"
                                     android:text="@{viewmodel.contactAddress}"
                                     android:textAlignment="center"
-                                    android:textColor="@color/white"
+                                    android:textColor="@color/black"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/textView115" />
@@ -120,9 +103,7 @@
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="24dp"
                                     android:layout_marginTop="8dp"
-                                    android:layout_marginEnd="24dp"
                                     android:layout_marginBottom="24dp"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="@+id/textView116"
@@ -134,22 +115,24 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="8dp"
+                                        android:fontFamily="@font/comfortaa"
                                         android:text="Phone : "
-                                        android:textColor="@color/white"
+                                        android:textColor="@color/black"
                                         android:textSize="12dp"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent" />
 
                                     <TextView
                                         android:id="@+id/textView118"
-                                        android:layout_width="170dp"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="8dp"
                                         android:layout_marginTop="8dp"
                                         android:layout_marginEnd="8dp"
+                                        android:fontFamily="@font/comfortaa"
                                         android:text="@{viewmodel.contactMobile}"
                                         android:textAlignment="textStart"
-                                        android:textColor="@color/white"
+                                        android:textColor="@color/black"
                                         android:textSize="12dp"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintHorizontal_bias="0.0"
@@ -160,28 +143,30 @@
                                         android:id="@+id/textView119"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginStart="5dp"
                                         android:layout_marginTop="8dp"
-                                        android:layout_marginBottom="8dp"
+                                        android:fontFamily="@font/comfortaa"
                                         android:text="Mail : "
-                                        android:textColor="@color/white"
+                                        android:textColor="@color/black"
                                         android:textSize="12dp"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintEnd_toEndOf="@+id/textView117"
+                                        app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toBottomOf="@+id/textView118" />
 
                                     <TextView
+
                                         android:id="@+id/textView120"
-                                        android:layout_width="0dp"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginStart="8dp"
                                         android:layout_marginTop="8dp"
                                         android:layout_marginBottom="8dp"
+                                        android:fontFamily="@font/comfortaa"
                                         android:text="@{viewmodel.contactEmail}"
-                                        android:textAlignment="textStart"
-                                        android:textColor="@color/white"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/black"
                                         android:textSize="12dp"
                                         app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintEnd_toEndOf="@+id/textView118"
-                                        app:layout_constraintStart_toStartOf="@+id/textView118"
+                                        app:layout_constraintStart_toEndOf="@+id/textView119"
                                         app:layout_constraintTop_toBottomOf="@+id/textView118" />
                                 </androidx.constraintlayout.widget.ConstraintLayout>
                             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -243,18 +228,18 @@
                                     app:layout_constraintTop_toTopOf="@+id/spinner3" />
 
                                 <Button
-                                    android:layout_height="40dp"
-                                    android:textColor="@color/white"
-                                    android:background="@drawable/bg_button_red"
                                     android:id="@+id/button9"
                                     android:layout_width="0dp"
-
+                                    android:layout_height="40dp"
                                     android:layout_marginStart="8dp"
                                     android:layout_marginTop="8dp"
+
                                     android:layout_marginEnd="8dp"
                                     android:layout_marginBottom="8dp"
+                                    android:background="@drawable/bg_button_red"
                                     android:onClick="@{viewmodel::clickGetBranch}"
                                     android:text="get branches"
+                                    android:textColor="@color/white"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -276,6 +261,7 @@
                                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout20">
 
                                 <TextView
+                                    android:fontFamily="@font/comfortaa"
                                     android:id="@+id/textView121"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -305,7 +291,7 @@
                     </LinearLayout>
                 </ScrollView>
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

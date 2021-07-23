@@ -27,6 +27,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="@color/light_gray"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -34,18 +35,21 @@
                     android:id="@+id/constraintLayout21"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:background="#341f43"
+                    android:background="@color/light_gray"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_16"
+                        android:fontFamily="@font/comfortaa"
                         android:id="@+id/textView122"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxLines="2"
                         android:text="@{viewmodel.branchName}"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -57,14 +61,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="sans-serif-thin"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/comfortaa"
                     android:text="Address : "
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout21" />
 
                 <TextView
+                    android:fontFamily="@font/comfortaa"
                     android:id="@+id/textView124"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -79,18 +84,19 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView123" />
 
                 <TextView
+                    android:fontFamily="@font/comfortaa"
                     android:id="@+id/textView125"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="sans-serif-thin"
                     android:text="Phone : "
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView124" />
 
                 <TextView
+                    android:fontFamily="@font/comfortaa"
                     android:id="@+id/textView126"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -110,13 +116,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="sans-serif-thin"
+                    android:fontFamily="@font/comfortaa"
                     android:text="Mail : "
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView126" />
 
                 <TextView
+                    android:fontFamily="@font/comfortaa"
                     android:id="@+id/textView128"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

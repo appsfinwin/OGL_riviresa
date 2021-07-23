@@ -77,7 +77,7 @@
         <activity
             android:name=".payment.paytm.PaymentActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/PaymentTheme"/>
+            android:theme="@style/NewAppTheme"/>
         <activity
             android:name=".select_payment.SelectPaymentActivity"
             android:theme="@style/NewAppTheme"
@@ -93,6 +93,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".login.LoginActivity"
+            android:theme="@style/NewAppTheme"
+            android:windowSoftInputMode="stateAlwaysVisible"
             android:screenOrientation="portrait">
 
         </activity>

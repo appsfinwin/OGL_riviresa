@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
@@ -95,7 +96,8 @@ public class LoginViewmodel extends AndroidViewModel {
     {
         if (of_username.get().equals(""))
         {
-            showSnakbar("Username cannot be ampty",view);
+            Toast.makeText(view.getContext(), "please enter otp", Toast.LENGTH_SHORT).show();
+            //showSnakbar("Username cannot be ampty",view);
         }else if (of_password.get().equals(""))
         {
             showSnakbar("Password cannot be ampty",view);
@@ -168,5 +170,7 @@ public class LoginViewmodel extends AndroidViewModel {
         Snackbar snackbar = Snackbar
                 .make(view, message, Snackbar.LENGTH_LONG);
         snackbar.show();
+
+
     }
 }

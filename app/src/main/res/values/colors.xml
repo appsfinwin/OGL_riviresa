@@ -13,8 +13,10 @@
     <color name="l_btn_back">#A9A9A9</color>
     <color name="l_btn_txt">#595959</color>
     <color name="gray">#C1C0C0</color>
+    <color name="dark_gray">#3E3C3C</color>
     <color name="black_overlay">#66000000</color>
     <color name="l_gray">#e7e7e7</color>
+    <color name="light_gray">#F3F3F3</color>
     <color name="item_color_1">#FFF</color>
     <color name="item_color_2">#FFF</color>
     <color name="brown">#5D4037</color>
@@ -23,6 +25,10 @@
     <color name="edit_text_highlight">#ffffff</color>
     <color name="bg_loading">#84000000</color>
     <color name="trsnsperent">#00000000</color>
+    <color name="bg_yellow">#fbe385</color>
+    <color name="text_yellow">#C5AC4A</color>
     <color name="blue_pay_button">#31beff</color>
+    <color name="blue">#074ECA</color>
+    <color name="edit_text_color">#D3CDCD</color>
 
 </resources>

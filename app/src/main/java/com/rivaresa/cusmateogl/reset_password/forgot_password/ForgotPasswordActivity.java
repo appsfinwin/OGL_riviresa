@@ -28,7 +28,6 @@ public class ForgotPasswordActivity extends BaseActivity {
         viewmodel = new ViewModelProvider(this).get(ForgotPasswordViewmodel.class);
         binding.setViewmodel(viewmodel);
 
-
         viewmodel.getmAction().observe(this, new Observer<ForgotPasswordAction>() {
             @Override
             public void onChanged(ForgotPasswordAction forgotPasswordAction) {

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -11,18 +12,28 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.play.core.appupdate.AppUpdateManager;
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.install.InstallStateUpdatedListener;
+import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.install.model.InstallStatus;
+import com.google.android.play.core.install.model.UpdateAvailability;
 import com.rivaresa.cusmateogl.BaseActivity;
 import com.rivaresa.cusmateogl.R;
 import com.rivaresa.cusmateogl.databinding.ActivityLoginBinding;
+import com.rivaresa.cusmateogl.home.HomeActivity;
 import com.rivaresa.cusmateogl.login.action.LoginAction;
 import com.rivaresa.cusmateogl.reset_password.forgot_password.ForgotPasswordActivity;
-import com.rivaresa.cusmateogl.reset_password.otp.OtpActivity;
 import com.rivaresa.cusmateogl.signup.SignupActivity;
 import com.rivaresa.cusmateogl.supporting_class.ConstantClass;
 import com.rivaresa.cusmateogl.utils.DataHolder;
@@ -37,10 +48,23 @@ public class LoginActivity extends BaseActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     String latestVersion="",currentVersion="";
+    InstallStateUpdatedListener installStateUpdatedListener;
+    private AppUpdateManager mAppUpdateManager;
+    private static final int RC_APP_UPDATE = 11;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Window window = getWindow();
+
+// clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+// finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.bg_yellow));
 
         sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -51,7 +75,7 @@ public class LoginActivity extends BaseActivity {
         viewmodel.setActivity(this);
         binding.setViewmodel(viewmodel);
         if (isNetworkOnline()) {
-            checkVersion();
+           // checkVersion();
         }else {
             Toast.makeText(this, "No Internet", Toast.LENGTH_SHORT).show();
         }
@@ -91,9 +115,15 @@ public class LoginActivity extends BaseActivity {
                     case LoginAction.OTP_SUCCESS:
 
                         viewmodel.cancelLoading();
-                        Intent intent = new Intent(LoginActivity.this, OtpActivity.class);
-                        intent.putExtra("from","login");
-                        intent.putExtra("otp_id",loginAction.otpCreationResponse.getOtp().getOtpId());
+//                        Intent intent = new Intent(LoginActivity.this, OtpActivity.class);
+//                        intent.putExtra("from","login");
+//                        intent.putExtra("otp_id",loginAction.otpCreationResponse.getOtp().getOtpId());
+//                        startActivity(intent);
+//                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+//                        finish();
+
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         finish();
@@ -143,6 +173,7 @@ public class LoginActivity extends BaseActivity {
         Intent a = new Intent(Intent.ACTION_MAIN);
         a.addCategory(Intent.CATEGORY_HOME);
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        a.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(a);
     }
 
@@ -220,5 +251,79 @@ public class LoginActivity extends BaseActivity {
         }
         return status;
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        installStateUpdatedListener = state -> {
+            if (state.installStatus() == InstallStatus.DOWNLOADED){
+                //CHECK THIS if AppUpdateType.FLEXIBLE, otherwise you can skip
+                popupSnackbarForCompleteUpdate();
+            } else if (state.installStatus() == InstallStatus.INSTALLED){
+                if (mAppUpdateManager != null){
+                    if (installStateUpdatedListener!=null) {
+                        mAppUpdateManager.unregisterListener(installStateUpdatedListener);
+                    }
+                }
+
+            } else {
+                //Log.i(TAG, "InstallStateUpdatedListener: state: " + state.installStatus());
+            }
+        };
+
+
+        mAppUpdateManager = AppUpdateManagerFactory.create(this);
+
+        mAppUpdateManager.registerListener(installStateUpdatedListener);
+
+        mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(appUpdateInfo -> {
+
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE /*AppUpdateType.IMMEDIATE*/)){
+
+                try {
+                    mAppUpdateManager.startUpdateFlowForResult(
+                            appUpdateInfo, AppUpdateType.FLEXIBLE /*AppUpdateType.IMMEDIATE*/, LoginActivity.this, RC_APP_UPDATE);
+
+                } catch (IntentSender.SendIntentException e) {
+                    e.printStackTrace();
+                }
+
+            } else if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED){
+                //CHECK THIS if AppUpdateType.FLEXIBLE, otherwise you can skip
+                popupSnackbarForCompleteUpdate();
+            } else {
+                //Log.e(TAG, "checkForAppUpdateAvailability: something else");
+            }
+        });
+    }
+
+    private void popupSnackbarForCompleteUpdate() {
+
+        Snackbar snackbar =
+                Snackbar.make(
+                        findViewById(R.id.relativeLayout),
+                        "New app is ready!",
+                        Snackbar.LENGTH_INDEFINITE);
+
+        snackbar.setAction("Install", view -> {
+            if (mAppUpdateManager != null){
+                mAppUpdateManager.completeUpdate();
+            }
+        });
+
+
+        snackbar.setActionTextColor(getResources().getColor(R.color.red_btn_bg_color));
+        snackbar.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mAppUpdateManager != null) {
+            mAppUpdateManager.unregisterListener(installStateUpdatedListener);
+        }
     }
 }

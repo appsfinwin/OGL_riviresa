@@ -25,6 +25,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:fontFamily="@font/comfortaa"
                 android:id="@+id/textView00"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
@@ -45,6 +46,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:fontFamily="@font/comfortaa"
                 android:id="@+id/tv_net_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
