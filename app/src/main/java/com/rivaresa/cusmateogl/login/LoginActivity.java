@@ -31,9 +31,9 @@ import com.google.android.play.core.install.model.UpdateAvailability;
 import com.rivaresa.cusmateogl.BaseActivity;
 import com.rivaresa.cusmateogl.R;
 import com.rivaresa.cusmateogl.databinding.ActivityLoginBinding;
-import com.rivaresa.cusmateogl.home.HomeActivity;
 import com.rivaresa.cusmateogl.login.action.LoginAction;
 import com.rivaresa.cusmateogl.reset_password.forgot_password.ForgotPasswordActivity;
+import com.rivaresa.cusmateogl.reset_password.otp.OtpActivity;
 import com.rivaresa.cusmateogl.signup.SignupActivity;
 import com.rivaresa.cusmateogl.supporting_class.ConstantClass;
 import com.rivaresa.cusmateogl.utils.DataHolder;
@@ -115,18 +115,18 @@ public class LoginActivity extends BaseActivity {
                     case LoginAction.OTP_SUCCESS:
 
                         viewmodel.cancelLoading();
-//                        Intent intent = new Intent(LoginActivity.this, OtpActivity.class);
-//                        intent.putExtra("from","login");
-//                        intent.putExtra("otp_id",loginAction.otpCreationResponse.getOtp().getOtpId());
-//                        startActivity(intent);
-//                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-//                        finish();
-
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        Intent intent = new Intent(LoginActivity.this, OtpActivity.class);
+                        intent.putExtra("from","login");
+                        intent.putExtra("otp_id",loginAction.otpCreationResponse.getOtp().getOtpId());
                         startActivity(intent);
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         finish();
+
+//                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+//                        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                        startActivity(intent);
+//                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+//                        finish();
 
                         break;
                     case LoginAction.API_ERROR:

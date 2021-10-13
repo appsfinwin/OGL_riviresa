@@ -58,8 +58,8 @@
 
                     <ImageView
                         android:id="@+id/img_error"
-                        android:layout_width="@dimen/dimen_50dp"
-                        android:layout_height="@dimen/dimen_50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_marginTop="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +98,7 @@
 
                             android:text="Please try again later \n if any amount is deducted, will credited within few days!"
                             android:textAlignment="center"
-                            android:textSize="@dimen/dimen_16dp"
+                            android:textSize="16dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"

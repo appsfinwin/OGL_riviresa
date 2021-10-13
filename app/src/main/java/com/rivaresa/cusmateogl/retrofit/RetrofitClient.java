@@ -31,6 +31,7 @@ public class RetrofitClient {
                     //.baseUrl("https://ogluvnl.digicob.in/")
                     //.baseUrl("http://192.168.0.221:170/")
                     .baseUrl("http://testriviresaogl.digicob.in/")//rivaresa
+                    //.baseUrl("http://oglriviresalive.digicob.in/")//rivaresa
 
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())

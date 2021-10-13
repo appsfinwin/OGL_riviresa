@@ -125,10 +125,10 @@ dependencies {
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    implementation'com.paytm.appinvokesdk:appinvokesdk:1.5'
+    //implementation'com.paytm.appinvokesdk:appinvokesdk:1.5'
 
     //razorpay
-    implementation 'com.razorpay:checkout:1.5.16'
+    //implementation 'com.razorpay:checkout:1.5.16'
     implementation 'com.github.f0ris.sweetalert:library:1.5.1'//sweetalert Dialogue
     implementation 'org.jsoup:jsoup:1.8.3'
 
