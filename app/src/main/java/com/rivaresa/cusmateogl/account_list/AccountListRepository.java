@@ -9,6 +9,9 @@ import com.rivaresa.cusmateogl.account_list.pojo.account_response.AccountDetails
 import com.rivaresa.cusmateogl.account_list.pojo.inventory_response.InventoryDetailResponse;
 import com.rivaresa.cusmateogl.retrofit.ApiInterface;
 
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -55,7 +58,15 @@ public class AccountListRepository {
 
                     @Override
                     public void onError(Throwable e) {
-                        mAction.setValue(new AccountListAction(AccountListAction.API_ERROR, e.getMessage()));
+                        if (e instanceof SocketTimeoutException)
+                        {
+                            mAction.setValue(new AccountListAction(AccountListAction.API_ERROR,"Timeout! Please try again later"));
+                        }else if (e instanceof UnknownHostException)
+                        {
+                            mAction.setValue(new AccountListAction(AccountListAction.API_ERROR,"No Internet"));
+                        }else {
+                            mAction.setValue(new AccountListAction(AccountListAction.API_ERROR, e.getMessage()));
+                        }
                     }
                 });
 
@@ -86,7 +97,15 @@ public class AccountListRepository {
 
                     @Override
                     public void onError(Throwable e) {
-                        mAction.setValue(new AccountListAction(AccountListAction.API_ERROR, e.getMessage()));
+                        if (e instanceof SocketTimeoutException)
+                        {
+                            mAction.setValue(new AccountListAction(AccountListAction.API_ERROR,"Timeout! Please try again later"));
+                        }else if (e instanceof UnknownHostException)
+                        {
+                            mAction.setValue(new AccountListAction(AccountListAction.API_ERROR,"No Internet"));
+                        }else {
+                            mAction.setValue(new AccountListAction(AccountListAction.API_ERROR, e.getMessage()));
+                        }
                     }
                 });
 

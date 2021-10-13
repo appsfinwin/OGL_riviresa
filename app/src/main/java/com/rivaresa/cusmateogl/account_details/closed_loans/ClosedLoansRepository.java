@@ -8,6 +8,9 @@ import com.rivaresa.cusmateogl.account_details.closed_loans.action.ClosedLoanAct
 import com.rivaresa.cusmateogl.account_details.closed_loans.pojo.ClosedLoansResponse;
 import com.rivaresa.cusmateogl.retrofit.ApiInterface;
 
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -72,7 +75,15 @@ public class ClosedLoansRepository {
 
                     @Override
                     public void onError(Throwable e) {
-                        mAction.setValue(new ClosedLoanAction(ClosedLoanAction.API_ERROR,e.getMessage()));
+                        if (e instanceof SocketTimeoutException)
+                        {
+                            mAction.setValue(new ClosedLoanAction(ClosedLoanAction.API_ERROR,"Timeout! Please try again later"));
+                        }else if (e instanceof UnknownHostException)
+                        {
+                            mAction.setValue(new ClosedLoanAction(ClosedLoanAction.API_ERROR,"No Internet"));
+                        }else {
+                            mAction.setValue(new ClosedLoanAction(ClosedLoanAction.API_ERROR, e.getMessage()));
+                        }
                     }
                 });
 

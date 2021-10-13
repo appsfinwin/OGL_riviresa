@@ -239,7 +239,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:onClick="@{viewmodel::clickBack}"
-            android:padding=" 10dp"
+            android:padding="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back" />

@@ -163,7 +163,7 @@ public class PaymentViewmodel extends AndroidViewModel {
     }
 
     public void clickPaytm(View view) {
-////        setChecksum();
+//        setChecksum();
 //        if (!amountToPay.get().equals("")) {
 //            amountToPayInt.set(Double.parseDouble(amountToPay.get()));
 //        }
@@ -183,7 +183,7 @@ public class PaymentViewmodel extends AndroidViewModel {
 //            mAction.setValue(new PaymentAction(PaymentAction.CLICK_PAY));
 //        }
 
-        showSnakbar("Coming soon...", view);
+        showSnakbar("Coming soon", view);
     }
 
     private void showSnakbar(String message, View view) {

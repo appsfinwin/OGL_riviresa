@@ -8,6 +8,9 @@ import com.rivaresa.cusmateogl.finialize_amount.action.FinalizeAmountAction;
 import com.rivaresa.cusmateogl.payment.paytm.pojo.SettlementDetailsResponse;
 import com.rivaresa.cusmateogl.retrofit.ApiInterface;
 
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -71,7 +74,15 @@ public class FinalizeAmountRepository {
 
                     @Override
                     public void onError(Throwable e) {
-                        mAction.setValue(new FinalizeAmountAction(FinalizeAmountAction.SETTLEMENT_ERROR,e.getMessage()));
+                        if (e instanceof SocketTimeoutException)
+                        {
+                            mAction.setValue(new FinalizeAmountAction(FinalizeAmountAction.SETTLEMENT_ERROR,"Timeout! Please try again later"));
+                        }else if (e instanceof UnknownHostException)
+                        {
+                            mAction.setValue(new FinalizeAmountAction(FinalizeAmountAction.SETTLEMENT_ERROR,"No Internet"));
+                        }else {
+                            mAction.setValue(new FinalizeAmountAction(FinalizeAmountAction.SETTLEMENT_ERROR, e.getMessage()));
+                        }
                     }
                 });
 

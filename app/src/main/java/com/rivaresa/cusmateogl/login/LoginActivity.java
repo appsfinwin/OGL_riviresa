@@ -75,7 +75,7 @@ public class LoginActivity extends BaseActivity {
         viewmodel.setActivity(this);
         binding.setViewmodel(viewmodel);
         if (isNetworkOnline()) {
-           // checkVersion();
+            checkVersion();
         }else {
             Toast.makeText(this, "No Internet", Toast.LENGTH_SHORT).show();
         }
@@ -109,16 +109,21 @@ public class LoginActivity extends BaseActivity {
                         viewmodel.initLoading(LoginActivity.this);
                         viewmodel.generateOtp(loginAction.loginResponse.getLoginData().getPhoneNum());
 
+//                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+//                        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                        startActivity(intent);
+//                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+//                        finish();
 
                         break;
 
                     case LoginAction.OTP_SUCCESS:
 
                         viewmodel.cancelLoading();
-                        Intent intent = new Intent(LoginActivity.this, OtpActivity.class);
-                        intent.putExtra("from","login");
-                        intent.putExtra("otp_id",loginAction.otpCreationResponse.getOtp().getOtpId());
-                        startActivity(intent);
+                        Intent otpIntent = new Intent(LoginActivity.this, OtpActivity.class);
+                        otpIntent.putExtra("from","login");
+                        otpIntent.putExtra("otp_id",loginAction.otpCreationResponse.getOtp().getOtpId());
+                        startActivity(otpIntent);
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         finish();
 

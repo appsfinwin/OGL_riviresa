@@ -40,6 +40,7 @@
                 tools:layout_conversion_absoluteWidth="188dp">
 
                 <TextView
+                    android:textColor="@color/black"
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -133,6 +134,7 @@
                 tools:layout_conversion_absoluteWidth="188dp">
 
                 <TextView
+                    android:textColor="@color/black"
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -176,6 +178,7 @@
                 tools:layout_conversion_absoluteWidth="189dp">
 
                 <TextView
+                    android:textColor="@color/black"
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -225,6 +228,7 @@
                 card_view:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
                 <TextView
+                    android:textColor="@color/black"
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -250,19 +254,23 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
                 card_view:layout_constraintEnd_toStartOf="@+id/view"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
                 <TextView
                     android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
                     android:fontFamily="sans-serif-thin"
                     android:text="Ornaments Released"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/cus_det_text_size"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintStart_toStartOf="parent"
@@ -292,6 +300,7 @@
                 card_view:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
                 <TextView
+                    android:textColor="@color/black"
                     android:id="@+id/textView19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -318,19 +327,23 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout6"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toEndOf="@+id/view"
                 card_view:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
 
                 <TextView
+                    android:textAlignment="center"
                     android:id="@+id/textView21"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:fontFamily="sans-serif-thin"
                     android:text="Ornaments Released Date"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/cus_det_text_size"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintStart_toStartOf="parent"

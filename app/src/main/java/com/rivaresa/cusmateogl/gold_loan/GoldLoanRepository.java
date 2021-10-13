@@ -9,6 +9,9 @@ import com.rivaresa.cusmateogl.gold_loan.action.GoldLoanAction;
 import com.rivaresa.cusmateogl.gold_loan.pojo.terms_and_conditions.TermsResponse;
 import com.rivaresa.cusmateogl.retrofit.ApiInterface;
 
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -71,7 +74,15 @@ public class GoldLoanRepository {
 
                     @Override
                     public void onError(Throwable e) {
-                        mAction.setValue(new GoldLoanAction(GoldLoanAction.API_ERROR,e.getMessage()));
+                        if (e instanceof SocketTimeoutException)
+                        {
+                            mAction.setValue(new GoldLoanAction(GoldLoanAction.API_ERROR,"Timeout! Please try again later"));
+                        }else if (e instanceof UnknownHostException)
+                        {
+                            mAction.setValue(new GoldLoanAction(GoldLoanAction.API_ERROR,"No Internet"));
+                        }else {
+                            mAction.setValue(new GoldLoanAction(GoldLoanAction.API_ERROR, e.getMessage()));
+                        }
                     }
                 });
     }
@@ -101,7 +112,15 @@ public class GoldLoanRepository {
 
                     @Override
                     public void onError(Throwable e) {
-                        mAction.setValue(new GoldLoanAction(GoldLoanAction.API_ERROR,e.getMessage()));
+                        if (e instanceof SocketTimeoutException)
+                        {
+                            mAction.setValue(new GoldLoanAction(GoldLoanAction.API_ERROR,"Timeout! Please try again later"));
+                        }else if (e instanceof UnknownHostException)
+                        {
+                            mAction.setValue(new GoldLoanAction(GoldLoanAction.API_ERROR,"No Internet"));
+                        }else {
+                            mAction.setValue(new GoldLoanAction(GoldLoanAction.API_ERROR, e.getMessage()));
+                        }
                     }
                 });
     }

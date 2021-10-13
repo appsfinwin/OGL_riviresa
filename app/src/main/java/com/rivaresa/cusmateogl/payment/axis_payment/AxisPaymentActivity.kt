@@ -1,5 +1,6 @@
 package com.rivaresa.cusmateogl.payment.axis_payment
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Context
@@ -22,7 +23,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.rivaresa.cusmateogl.BaseActivity
@@ -94,7 +94,7 @@ class AxisPaymentActivity : BaseActivity() {
         val webSettings: WebSettings = webView.getSettings()
         webSettings.javaScriptEnabled = true
 
-        viewModel.mAction.observe(this, Observer {
+        viewModel.mAction.observe(this, androidx.lifecycle.Observer {
             viewModel.cancelLoading()
             when (it.action) {
                 PaymentAction.TOKEN_GENERATION_SUCCESS -> {
@@ -125,7 +125,10 @@ class AxisPaymentActivity : BaseActivity() {
                     }
                     warningDialog.setContentView(view)
                     //warningDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    warningDialog.getWindow()?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+                    warningDialog.getWindow()?.setLayout(
+                        WindowManager.LayoutParams.MATCH_PARENT,
+                        WindowManager.LayoutParams.WRAP_CONTENT
+                    )
                     warningDialog.setCanceledOnTouchOutside(false)
                     warningDialog.setCancelable(true)
                     warningDialog.show()
@@ -253,11 +256,12 @@ class AxisPaymentActivity : BaseActivity() {
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     fun showError(error: String?, i: Int) {
         warningDialog = Dialog(this)
         val inflater = this.layoutInflater
         val view = inflater.inflate(R.layout.layout_payment_error, null)
-        warningDialog.getWindow()?.setLayout(this.resources.displayMetrics.widthPixels, WindowManager.LayoutParams.WRAP_CONTENT)
+        warningDialog.getWindow()?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
         warningDialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
         val errorMessage = view.findViewById<TextView>(R.id.error_title)
         val ok = view.findViewById<Button>(R.id.btn_ok)
@@ -290,9 +294,9 @@ class AxisPaymentActivity : BaseActivity() {
         }
         warningDialog.setContentView(view)
 
-        warningDialog.getWindow()?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+        warningDialog.getWindow()?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
         warningDialog.setCanceledOnTouchOutside(false)
-        warningDialog.setCancelable(true)
+        warningDialog.setCancelable(false)
         warningDialog.show()
     }
 
@@ -303,6 +307,7 @@ class AxisPaymentActivity : BaseActivity() {
         val tranId = view.findViewById<TextView>(R.id.tv_tran_id)
         val ok = view.findViewById<Button>(R.id.btn_ok)
         tranId.text = tran_id
+       // val window: Window? = successDialog.window
 
         ok.setOnClickListener {
             //                finish();
@@ -321,10 +326,12 @@ class AxisPaymentActivity : BaseActivity() {
         }
         successDialog.setContentView(view)
         //warningDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        successDialog.getWindow()?.setLayout(this.resources.displayMetrics.widthPixels, WindowManager.LayoutParams.WRAP_CONTENT)
-        successDialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+       // successDialog.getWindow()?.setLayout(this.resources.displayMetrics.widthPixels, WindowManager.LayoutParams.WRAP_CONTENT)
+       // window?.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
+        successDialog.getWindow()?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
+        successDialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.WHITE));
         successDialog.setCanceledOnTouchOutside(false)
-        successDialog.setCancelable(true)
+        successDialog.setCancelable(false)
         successDialog.show()
     }
 

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -186,26 +187,26 @@ public class PaymentActivity extends BaseActivity  {
 //        return null;
 //    }
 
-//    private int versionCompare(String str1, String str2) {
-//        if (TextUtils.isEmpty(str1) || TextUtils.isEmpty(str2)) {
-//            return 1;
-//        }
-//        String[] vals1 = str1.split("\\.");
-//        String[] vals2 = str2.split("\\.");
-//        int i = 0;
-//        //set index to first non-equal ordinal or length of shortest version string
-//        while (i < vals1.length && i < vals2.length && vals1[i].equalsIgnoreCase(vals2[i])) {
-//            i++;
-//        }
-//        //compare first non-equal ordinal number
-//        if (i < vals1.length && i < vals2.length) {
-//            int diff = Integer.valueOf(vals1[i]).compareTo(Integer.valueOf(vals2[i]));
-//            return Integer.signum(diff);
-//        }
-//        //the strings are equal or one string is a substring of the other
-//        //e.g. "1.2.3" = "1.2.3" or "1.2.3" < "1.2.3.4"
-//        return Integer.signum(vals1.length - vals2.length);
-//    }
+    private int versionCompare(String str1, String str2) {
+        if (TextUtils.isEmpty(str1) || TextUtils.isEmpty(str2)) {
+            return 1;
+        }
+        String[] vals1 = str1.split("\\.");
+        String[] vals2 = str2.split("\\.");
+        int i = 0;
+        //set index to first non-equal ordinal or length of shortest version string
+        while (i < vals1.length && i < vals2.length && vals1[i].equalsIgnoreCase(vals2[i])) {
+            i++;
+        }
+        //compare first non-equal ordinal number
+        if (i < vals1.length && i < vals2.length) {
+            int diff = Integer.valueOf(vals1[i]).compareTo(Integer.valueOf(vals2[i]));
+            return Integer.signum(diff);
+        }
+        //the strings are equal or one string is a substring of the other
+        //e.g. "1.2.3" = "1.2.3" or "1.2.3" < "1.2.3.4"
+        return Integer.signum(vals1.length - vals2.length);
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -387,48 +388,15 @@ public class PaymentActivity extends BaseActivity  {
 //    }
 
 
-//    public void startPayment() {
-//        /*
-//          You need to pass current activity in order to let Razorpay create CheckoutActivity
-//         */
-//        final Activity activity = this;
-//
-//        final Checkout co = new Checkout();
-//        co.setKeyID("rzp_test_DLmmkTrql5zJbY");
-//        //
-////        co.setImage(R.drawable.nfc_toolbar_logo);
-//
-//        try {
-//            JSONObject options = new JSONObject();
-//            options.put("name", "Riviresa Nidhi Limited");
-//            options.put("description", payment);
-//            //You can omit the image option to fetch the image from dashboard
-//            options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png");
-//            options.put("currency", "INR");
-//            options.put("amount", String.valueOf(Double.parseDouble(viewmodel.amountToPay.get())*100));
-//
-//            JSONObject preFill = new JSONObject();
-//            JSONObject theme = new JSONObject();
-//            options.put("prefill.email", "dddd@leslin.com");
-//            options.put("prefill.contact", "8714155345");
-//            theme.put("color", "#c91854");
-//
-//           // options.put("prefill", preFill);
-//            options.put("theme", theme);
-//
-//            co.open(activity, options);
-//        } catch (Exception e) {
-//            Toast.makeText(activity, "Error in payment: " + e.getMessage(), Toast.LENGTH_SHORT)
-//                    .show();
-//            e.printStackTrace();
-//        }
-//    }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
+
+
+
 
 
     private void exitDialog() {

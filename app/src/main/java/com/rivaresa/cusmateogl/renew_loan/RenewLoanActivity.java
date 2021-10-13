@@ -41,6 +41,7 @@ public class RenewLoanActivity extends BaseActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_renew_loan);
         viewmodel = new ViewModelProvider(this).get(RenewLoanViewmodel.class);
         binding.setViewmodel(viewmodel);
+        binding.mainLayout.setVisibility(View.GONE);
         if (intent != null) {
 
             if (intent.getStringExtra("from").equals("gold_loan")) {
@@ -90,10 +91,12 @@ public class RenewLoanActivity extends BaseActivity {
                 switch (renewLoanAction.getAction()) {
                     case RenewLoanAction.GOLD_LOAN_RENEW_SUCCESS:
                         viewmodel.setGoldLoanReceipt(renewLoanAction.getGoldLoanResponse().getData());
+                        binding.mainLayout.setVisibility(View.VISIBLE);
                         break;
 
                     case RenewLoanAction.RENEW_SUCCES:
                         viewmodel.setReceipt(renewLoanAction.getRenewalResponse().getData());
+                        binding.mainLayout.setVisibility(View.VISIBLE);
                         break;
 
                     case RenewLoanAction.CLICK_OK:

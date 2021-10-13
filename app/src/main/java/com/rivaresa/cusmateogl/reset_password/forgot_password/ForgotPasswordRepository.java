@@ -4,8 +4,12 @@ import android.annotation.SuppressLint;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.rivaresa.cusmateogl.account_list.action.AccountListAction;
 import com.rivaresa.cusmateogl.reset_password.forgot_password.pojo.ResetPasswordResponse;
 import com.rivaresa.cusmateogl.retrofit.ApiInterface;
+
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
@@ -71,7 +75,15 @@ public class ForgotPasswordRepository {
 
                     @Override
                     public void onError(Throwable e) {
-                        mAction.setValue(new ForgotPasswordAction(ForgotPasswordAction.API_ERROR,e.getMessage()));
+                        if (e instanceof SocketTimeoutException)
+                        {
+                            mAction.setValue(new ForgotPasswordAction(ForgotPasswordAction.API_ERROR,"Timeout! Please try again later"));
+                        }else if (e instanceof UnknownHostException)
+                        {
+                            mAction.setValue(new ForgotPasswordAction(ForgotPasswordAction.API_ERROR,"No Internet"));
+                        }else {
+                            mAction.setValue(new ForgotPasswordAction(ForgotPasswordAction.API_ERROR, e.getMessage()));
+                        }
                     }
                 });
     }

@@ -22,17 +22,17 @@ public class RetrofitClient {
 
 
             final OkHttpClient client = new OkHttpClient.Builder()
-                    .readTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(60, TimeUnit.SECONDS)
                     .addInterceptor(logging)
-                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .connectTimeout(60, TimeUnit.SECONDS)
                     .build();
 
             retrofit_login = new Retrofit.Builder()
-                    //.baseUrl("https://ogluvnl.digicob.in/")
-                    //.baseUrl("http://192.168.0.221:170/")
-                    .baseUrl("http://testriviresaogl.digicob.in/")//rivaresa
-                    //.baseUrl("http://oglriviresalive.digicob.in/")//rivaresa
 
+                    //.baseUrl("http://192.168.0.221:170/")
+                    //.baseUrl("http://oglsales.digicob.in/")//sales
+                    .baseUrl("http://testriviresaogl.digicob.in/")//test rivaresa
+                    //.baseUrl("http://oglriviresalive.digicob.in/")//rivaresa
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)

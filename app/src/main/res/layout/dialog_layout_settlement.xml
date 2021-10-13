@@ -21,7 +21,7 @@
             android:layout_marginBottom="16dp"
             android:text="OK"
             android:textSize="@dimen/_17"
-            android:padding="@dimen/_5"
+            android:padding="10dp"
             android:textColor="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

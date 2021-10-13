@@ -10,8 +10,8 @@ android {
         applicationId "com.rivaresa.cusmateogl"
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 4
-        versionName "0.9"
+        versionCode 11
+        versionName "1.3"
 
         //new version code 7
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -132,5 +132,5 @@ dependencies {
     implementation 'com.github.f0ris.sweetalert:library:1.5.1'//sweetalert Dialogue
     implementation 'org.jsoup:jsoup:1.8.3'
 
-    implementation 'com.google.android.play:core:1.10.0'
+    implementation 'com.google.android.play:core:1.10.2'
 }

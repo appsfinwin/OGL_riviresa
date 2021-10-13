@@ -5,7 +5,11 @@ import android.annotation.SuppressLint;
 import androidx.lifecycle.MutableLiveData;
 
 import com.rivaresa.cusmateogl.account_details.pojo.GetBankDetailsResponse;
+import com.rivaresa.cusmateogl.account_list.action.AccountListAction;
 import com.rivaresa.cusmateogl.retrofit.ApiInterface;
+
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
@@ -69,7 +73,15 @@ public class AccountDetailsRepository {
 
                     @Override
                     public void onError(Throwable e) {
-                        mAction.setValue(new AccountAction(AccountAction.API_ERROR,e.getMessage()));
+                        if (e instanceof SocketTimeoutException)
+                        {
+                            mAction.setValue(new AccountAction(AccountAction.API_ERROR,"Timeout! Please try again later"));
+                        }else if (e instanceof UnknownHostException)
+                        {
+                            mAction.setValue(new AccountAction(AccountAction.API_ERROR,"No Internet"));
+                        }else {
+                            mAction.setValue(new AccountAction(AccountAction.API_ERROR, e.getMessage()));
+                        }
                     }
                 });
     }

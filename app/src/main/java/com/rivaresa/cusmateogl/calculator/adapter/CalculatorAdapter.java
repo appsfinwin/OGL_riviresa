@@ -22,8 +22,11 @@ public class CalculatorAdapter extends RecyclerView.Adapter<CalculatorAdapter.Vi
     }
 
     public void setCalculatorData(List<CalculatorData> calculatorData) {
+
         this.calculatorData = calculatorData;
         notifyDataSetChanged();
+
+
     }
 
     @NonNull

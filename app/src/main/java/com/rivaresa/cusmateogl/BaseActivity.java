@@ -23,16 +23,6 @@ public abstract class BaseActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
 
-//        Window window = getWindow();
-//
-//// clear FLAG_TRANSLUCENT_STATUS flag:
-//        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//
-//// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//
-//// finally change the color
-//        window.setStatusBarColor(ContextCompat.getColor(this,R.color.white));
 
         sharedPreferences=getSharedPreferences("login",MODE_PRIVATE);
         editor=sharedPreferences.edit();
@@ -111,15 +101,7 @@ public abstract class BaseActivity extends AppCompatActivity
     @Override
     protected void onRestart() {
         super.onRestart();
-//        boolean isBackground=sharedPreferences.getBoolean(ConstantClass.BACKGROUND, false);
-//                if (isBackground) {
-//        boolean isLogin=sharedPreferences.getBoolean(ConstantClass.IS_LOGIN, false);
-//            if (!isLogin) {
-//                Intent intent = new Intent(this, LoginActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(intent);
-//            }
-//        }
+
     }
 
 

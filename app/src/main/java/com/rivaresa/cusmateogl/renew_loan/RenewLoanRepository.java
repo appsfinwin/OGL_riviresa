@@ -74,7 +74,15 @@ public class RenewLoanRepository {
 
                     @Override
                     public void onError(Throwable e) {
-                        mAction.setValue(new RenewLoanAction(RenewLoanAction.API_ERROR,e.getMessage()));
+                        if (e instanceof SocketTimeoutException)
+                        {
+                            mAction.setValue(new RenewLoanAction (RenewLoanAction.API_ERROR,"Timeout! Please try again later"));
+                        }else if (e instanceof UnknownHostException)
+                        {
+                            mAction.setValue(new RenewLoanAction(RenewLoanAction.API_ERROR,"No Internet"));
+                        }else {
+                            mAction.setValue(new RenewLoanAction(RenewLoanAction.API_ERROR, e.getMessage()));
+                        }
                     }
                 });
 
