@@ -23,6 +23,7 @@ import com.rivaresa.cusmateogl.home.HomeActivity;
 import com.rivaresa.cusmateogl.payment.action.PaymentAction;
 import com.rivaresa.cusmateogl.payment.axis_payment.AxisPaymentActivity;
 import com.rivaresa.cusmateogl.payment.paytm.adapter.PaymentsAdapter;
+import com.rivaresa.cusmateogl.utils.Services;
 
 public class PaymentActivity extends BaseActivity  {
 
@@ -89,6 +90,7 @@ public class PaymentActivity extends BaseActivity  {
 
 
                     case PaymentAction.API_ERROR:
+                        Services.errorDialog(PaymentActivity.this,paymentAction.getError());
                         break;
 
                         case PaymentAction.CHECKSUM_SUCCESS:

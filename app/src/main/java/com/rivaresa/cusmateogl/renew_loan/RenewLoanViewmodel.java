@@ -1,7 +1,7 @@
 package com.rivaresa.cusmateogl.renew_loan;
 
 import android.app.Application;
-import android.app.ProgressDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.View;
@@ -40,7 +40,7 @@ public class RenewLoanViewmodel extends AndroidViewModel {
 
     }
     Application application;
-    ProgressDialog loading;
+    Dialog loading;
     CompositeDisposable compositeDisposable;
     MutableLiveData<RenewLoanAction> mAction;
     RenewLoanRepository repository;

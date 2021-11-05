@@ -2,7 +2,6 @@ package com.rivaresa.cusmateogl.signup;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -14,6 +13,7 @@ import com.rivaresa.cusmateogl.databinding.ActivitySignupBinding;
 import com.rivaresa.cusmateogl.login.LoginActivity;
 import com.rivaresa.cusmateogl.reset_password.otp.OtpActivity;
 import com.rivaresa.cusmateogl.signup.action.SignupAction;
+import com.rivaresa.cusmateogl.utils.Services;
 
 public class SignupActivity extends BaseActivity {
 
@@ -55,7 +55,8 @@ public class SignupActivity extends BaseActivity {
                         break;
 
                     case SignupAction.API_ERROR:
-                        Toast.makeText(SignupActivity.this, signupAction.getError(), Toast.LENGTH_LONG).show();
+                        Services.errorDialog(SignupActivity.this, signupAction.getError());
+
                         break;
                 }
             }

@@ -1,7 +1,9 @@
 package com.rivaresa.cusmateogl.account_details.closed_loans;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.rivaresa.cusmateogl.BaseActivity;
 import com.rivaresa.cusmateogl.R;
+import com.rivaresa.cusmateogl.account_details.AccountDetailsActivity;
 import com.rivaresa.cusmateogl.account_details.closed_loans.action.ClosedLoanAction;
 import com.rivaresa.cusmateogl.account_details.closed_loans.adapter.ClosedLoansAdapter;
 import com.rivaresa.cusmateogl.databinding.ActivityClosedLoansBinding;
+import com.rivaresa.cusmateogl.utils.Services;
 
 
 public class ClosedLoansActivity extends BaseActivity {
@@ -50,18 +54,35 @@ public class ClosedLoansActivity extends BaseActivity {
                         break;
 
                     case ClosedLoanAction.API_ERROR:
-                        showError(closedLoanAction.getError());
+                        Services.errorDialog(ClosedLoansActivity.this,closedLoanAction.getError());
+
                         break;
 
                         case ClosedLoanAction.NO_DATA:
-                        showError(closedLoanAction.getError());
-                        warningDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
+                            Dialog dialog= new Dialog(ClosedLoansActivity.this);
+                            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                            dialog.getWindow().setElevation(0);
+                            //errorDialog.getWindow().setLayout((int) WindowManager.LayoutParams.WRAP_CONTENT,  WindowManager.LayoutParams.WRAP_CONTENT);
+                            @SuppressLint("InflateParams")
+                            View customView_ = LayoutInflater.from(ClosedLoansActivity.this).inflate(R.layout.layout_error_popup, null);
+                            TextView tv_error_ = customView_.findViewById(R.id.tv_error);
+                            TextView tvOkey = customView_.findViewById(R.id.tv_error_ok);
+                            tv_error_.setText(closedLoanAction.getError());
+
+                            tvOkey.setOnClickListener(v -> {
                                 finish();
                                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                            }
-                        });
+                                dialog.cancel();
+                            });
+
+
+                            // errorDialog.addContentView(customView_,new WindowManager.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT,  WindowManager.LayoutParams.WRAP_CONTENT));
+                            dialog.setContentView(customView_);
+                            dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+                            dialog.setCanceledOnTouchOutside(false);
+                            dialog.setCancelable(false);
+                            dialog.show();
                         break;
                 }
             }
@@ -83,35 +104,4 @@ public class ClosedLoansActivity extends BaseActivity {
         overridePendingTransition(R.anim.fadein,R.anim.fadeout);
     }
 
-    public void showError(String error) {
-
-        warningDialog = new Dialog(this);
-
-        LayoutInflater inflater= this.getLayoutInflater();
-        View view=inflater.inflate(R.layout.layout_popup,null);
-        TextView errorMessage=view.findViewById(R.id.txt_msg);
-        TextView ok=view.findViewById(R.id.tv_email);
-        errorMessage.setText(error);
-
-        ok.setText("OK");
-        ok.setTextColor(getResources().getColor(R.color.colorPrimary));
-        ok.setTextSize(16);
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                finish();
-//                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                warningDialog.dismiss();
-            }
-        });
-        warningDialog.setContentView(view);
-        //warningDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        warningDialog.getWindow().setLayout(( WindowManager.LayoutParams.MATCH_PARENT), WindowManager.LayoutParams.WRAP_CONTENT);
-        warningDialog.setCanceledOnTouchOutside(false);
-        warningDialog.setCancelable(true);
-        warningDialog.show();
-
-
-
-    }
 }

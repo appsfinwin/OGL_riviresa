@@ -13,8 +13,8 @@ import com.rivaresa.cusmateogl.supporting_class.ConstantClass;
 public abstract class BaseActivity extends AppCompatActivity
         implements LogoutListener {
 
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
+    public SharedPreferences sharedPreferences;
+    public  SharedPreferences.Editor editor;
     int activityCount=0;
     long backgroundTime=0,foregroundTime=0;
 
@@ -72,7 +72,6 @@ public abstract class BaseActivity extends AppCompatActivity
     public void onSessionLogout() {
         editor.putBoolean(ConstantClass.IS_LOGIN,false);
         editor.apply();
-
 
             Intent intent = new Intent(this, LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

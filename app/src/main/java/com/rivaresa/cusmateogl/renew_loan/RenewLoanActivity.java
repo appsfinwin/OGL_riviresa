@@ -1,14 +1,10 @@
 package com.rivaresa.cusmateogl.renew_loan;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.TextView;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -19,6 +15,7 @@ import com.rivaresa.cusmateogl.R;
 import com.rivaresa.cusmateogl.databinding.ActivityRenewLoanBinding;
 import com.rivaresa.cusmateogl.home.HomeActivity;
 import com.rivaresa.cusmateogl.renew_loan.action.RenewLoanAction;
+import com.rivaresa.cusmateogl.utils.Services;
 
 
 public class RenewLoanActivity extends BaseActivity {
@@ -107,47 +104,10 @@ public class RenewLoanActivity extends BaseActivity {
                         break;
 
                     case RenewLoanAction.API_ERROR:
-                        showError(renewLoanAction.getError());
+                        Services.errorDialog(RenewLoanActivity.this, renewLoanAction.getError());
+                        //showError(renewLoanAction.getError());
                         break;
                 }
-            }
-        });
-    }
-
-    public void showError(String error) {
-
-        warningDialog = new Dialog(this);
-
-        LayoutInflater inflater = this.getLayoutInflater();
-        View view = inflater.inflate(R.layout.layout_popup, null);
-        TextView errorMessage = view.findViewById(R.id.txt_msg);
-        TextView ok = view.findViewById(R.id.tv_email);
-        errorMessage.setText(error);
-
-        ok.setText("OK");
-        ok.setTextColor(getResources().getColor(R.color.colorPrimary));
-        ok.setTextSize(16);
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(RenewLoanActivity.this, HomeActivity.class);
-                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent1);
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-            }
-        });
-        warningDialog.setContentView(view);
-        //warningDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        warningDialog.getWindow().setLayout((WindowManager.LayoutParams.MATCH_PARENT), WindowManager.LayoutParams.WRAP_CONTENT);
-        warningDialog.setCanceledOnTouchOutside(false);
-        warningDialog.setCancelable(true);
-        warningDialog.show();
-
-        warningDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-//                finish();
-//                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
     }

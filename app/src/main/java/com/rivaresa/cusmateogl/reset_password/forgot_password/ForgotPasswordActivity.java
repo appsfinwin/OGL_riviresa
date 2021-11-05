@@ -2,9 +2,6 @@ package com.rivaresa.cusmateogl.reset_password.forgot_password;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -14,8 +11,7 @@ import com.rivaresa.cusmateogl.BaseActivity;
 import com.rivaresa.cusmateogl.R;
 import com.rivaresa.cusmateogl.databinding.ActivityForgotPasswordBinding;
 import com.rivaresa.cusmateogl.reset_password.reset_password.ResetPasswordActivity;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
+import com.rivaresa.cusmateogl.utils.Services;
 
 public class ForgotPasswordActivity extends BaseActivity {
     ForgotPasswordViewmodel viewmodel;
@@ -44,14 +40,8 @@ public class ForgotPasswordActivity extends BaseActivity {
 
                     case ForgotPasswordAction.API_ERROR:
 
-                        View customView_ = LayoutInflater.from(ForgotPasswordActivity.this).inflate(R.layout.layout_error_layout, null);
-                        TextView tv_error_ = customView_.findViewById(R.id.tv_error);
-                        tv_error_.setText( forgotPasswordAction.getError());
+                        Services.errorDialog(ForgotPasswordActivity.this,forgotPasswordAction.getError());
 
-                        new SweetAlertDialog(ForgotPasswordActivity.this, SweetAlertDialog.ERROR_TYPE)
-                                .setTitleText("Error!")
-                                .setCustomView(customView_)
-                                .show();
                         break;
                 }
             }

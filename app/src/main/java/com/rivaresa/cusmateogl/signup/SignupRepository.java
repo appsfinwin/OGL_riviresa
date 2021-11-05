@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData;
 import com.rivaresa.cusmateogl.retrofit.ApiInterface;
 import com.rivaresa.cusmateogl.signup.action.SignupAction;
 import com.rivaresa.cusmateogl.signup.pojo.otp_response.OtpGenerateResponse;
-import com.rivaresa.cusmateogl.supporting_class.Enc_crypter;
 
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -50,7 +49,6 @@ public class SignupRepository {
         this.mAction = mAction;
     }
 
-    final Enc_crypter encr = new Enc_crypter();
 
 
 

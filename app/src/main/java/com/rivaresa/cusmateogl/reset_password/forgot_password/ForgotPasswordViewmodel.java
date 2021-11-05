@@ -13,7 +13,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.rivaresa.cusmateogl.retrofit.ApiInterface;
 import com.rivaresa.cusmateogl.retrofit.RetrofitClient;
-import com.rivaresa.cusmateogl.supporting_class.Enc_crypter;
 import com.rivaresa.cusmateogl.utils.Services;
 
 import org.json.JSONObject;
@@ -71,7 +70,6 @@ public class ForgotPasswordViewmodel extends AndroidViewModel {
         }
     }
 
-    final Enc_crypter encr = new Enc_crypter();
 
     ApiInterface apiInterface;
 

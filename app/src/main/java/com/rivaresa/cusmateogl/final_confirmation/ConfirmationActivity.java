@@ -18,6 +18,7 @@ import com.rivaresa.cusmateogl.databinding.ActivityConfirmationBinding;
 import com.rivaresa.cusmateogl.final_confirmation.action.ConfirmationAction;
 import com.rivaresa.cusmateogl.home.HomeActivity;
 import com.rivaresa.cusmateogl.renew_loan.RenewLoanActivity;
+import com.rivaresa.cusmateogl.utils.Services;
 
 public class ConfirmationActivity extends BaseActivity {
 
@@ -115,6 +116,7 @@ public class ConfirmationActivity extends BaseActivity {
                         break;
 
                     case ConfirmationAction.API_ERROR:
+                        Services.errorDialog(ConfirmationActivity.this, confirmationAction.getError());
                         break;
                 }
             }

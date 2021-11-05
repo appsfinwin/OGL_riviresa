@@ -99,7 +99,7 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:fontFamily="@font/comfortaa"
-                            android:hint="Account Number"
+                            android:hint="Membership Number"
                             android:inputType="number"
                             android:text="@={viewmodel.os_accountNumber}"
                             android:textSize="15sp"

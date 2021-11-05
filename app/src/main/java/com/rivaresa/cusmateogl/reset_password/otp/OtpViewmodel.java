@@ -1,7 +1,7 @@
 package com.rivaresa.cusmateogl.reset_password.otp;
 
 import android.app.Application;
-import android.app.ProgressDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
@@ -192,7 +192,7 @@ public class OtpViewmodel extends AndroidViewModel {
 
     }
 
-    ProgressDialog loading;
+    Dialog loading;
 
 
     public void initLoading(Context context) {

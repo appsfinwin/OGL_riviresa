@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#c91854</color>
+<!--    <color name="colorPrimaryDark">#c91854</color>-->
     <color name="colorPrimaryDark">#c91854</color>
     <!--<color name="colorPrimary">#2186bc</color>
     <color name="colorPrimaryDark">#2186bc</color>-->
@@ -26,9 +27,11 @@
     <color name="bg_loading">#84000000</color>
     <color name="trsnsperent">#00000000</color>
     <color name="bg_yellow">#fbe385</color>
+<!--    <color name="bg_yellow">#c02640</color>-->
     <color name="text_yellow">#C5AC4A</color>
     <color name="blue_pay_button">#31beff</color>
     <color name="blue">#074ECA</color>
+    <color name="blue_light">#2F90BD</color>
     <color name="edit_text_color">#D3CDCD</color>
 
 </resources>

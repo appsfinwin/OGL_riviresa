@@ -14,6 +14,7 @@ import com.rivaresa.cusmateogl.R;
 import com.rivaresa.cusmateogl.databinding.ActivityResetPasswordBinding;
 import com.rivaresa.cusmateogl.login.LoginActivity;
 import com.rivaresa.cusmateogl.reset_password.reset_password.action.ResetPasswordAction;
+import com.rivaresa.cusmateogl.utils.Services;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -68,14 +69,9 @@ public class ResetPasswordActivity extends BaseActivity {
                         break;
 
                     case ResetPasswordAction.API_ERROR:
-                        View customView_ = LayoutInflater.from(ResetPasswordActivity.this).inflate(R.layout.layout_error_layout, null);
-                        TextView tv_error_ = customView_.findViewById(R.id.tv_error);
-                        tv_error_.setText(resetPasswordAction.getError());
 
-                        new SweetAlertDialog(ResetPasswordActivity.this, SweetAlertDialog.ERROR_TYPE)
-                                .setTitleText("Error!")
-                                .setCustomView(customView_)
-                                .show();
+                        Services.errorDialog(ResetPasswordActivity.this,resetPasswordAction.getError() );
+
                         break;
 
 

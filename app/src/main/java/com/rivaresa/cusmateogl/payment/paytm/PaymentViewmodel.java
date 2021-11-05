@@ -163,27 +163,27 @@ public class PaymentViewmodel extends AndroidViewModel {
     }
 
     public void clickPaytm(View view) {
-//        setChecksum();
-//        if (!amountToPay.get().equals("")) {
-//            amountToPayInt.set(Double.parseDouble(amountToPay.get()));
-//        }
-//        if (paymentMode.get().equals("part_payment") && amountToPay.get().equals("")) {
-//            showSnakbar("Please enter amount!", view);
-//        }
-//        else if (amountToPayInt.get() <= 0) {
-//            showSnakbar(amountToPay.get() + " is not a valid amount!", view);
-//        }else if(paymentMode.get().equals("part_payment") &&(partPaymentAmount.get()>0) &&(Double.parseDouble(amountToPay.get()))>partPaymentAmount.get())
-//        {
-//            showSnakbar("Please enter an amount between 0 and "+partPaymentAmount.get(), view);
-//        }else if(paymentMode.get().equals("part_payment") && (partPaymentAmount.get()<0))
-//        {
-//            showSnakbar("Payment cannot process with entered amount. Please contact branch for further details!", view);
-//        }
-//        else {
-//            mAction.setValue(new PaymentAction(PaymentAction.CLICK_PAY));
-//        }
+        //setChecksum();
+        if (!amountToPay.get().equals("")) {
+            amountToPayInt.set(Double.parseDouble(amountToPay.get()));
+        }
+        if (paymentMode.get().equals("part_payment") && amountToPay.get().equals("")) {
+            showSnakbar("Please enter amount!", view);
+        }
+        else if (amountToPayInt.get() <= 0) {
+            showSnakbar(amountToPay.get() + " is not a valid amount!", view);
+        }else if(paymentMode.get().equals("part_payment") &&(partPaymentAmount.get()>0) &&(Double.parseDouble(amountToPay.get()))>partPaymentAmount.get())
+        {
+            showSnakbar("Please enter an amount between 0 and "+partPaymentAmount.get(), view);
+        }else if(paymentMode.get().equals("part_payment") && (partPaymentAmount.get()<0))
+        {
+            showSnakbar("Payment cannot process with entered amount. Please contact branch for further details!", view);
+        }
+        else {
+            mAction.setValue(new PaymentAction(PaymentAction.CLICK_PAY));
+        }
 
-        showSnakbar("Coming soon", view);
+       // showSnakbar("Coming soon", view);
     }
 
     private void showSnakbar(String message, View view) {

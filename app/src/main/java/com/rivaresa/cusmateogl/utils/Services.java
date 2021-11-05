@@ -1,14 +1,15 @@
 package com.rivaresa.cusmateogl.utils;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.TextView;
 
-import com.meetic.marypopup.MaryPopup;
 import com.rivaresa.cusmateogl.R;
 
 import java.net.NetworkInterface;
@@ -18,33 +19,51 @@ import java.util.Random;
 
 public class Services {
 
-    public static MaryPopup ErrorDialoge(final Context context, String error) {
-        MaryPopup maryPopup;
-        maryPopup = MaryPopup.with((Activity) context)
-                .cancellable(false)
-                .draggable(true)
-                .scaleDownDragging(true)
-                .fadeOutDragging(true)
-                .center(true)
-                .blackOverlayColor(Color.parseColor("#DD444444"))
-                .backgroundColor(Color.parseColor("#EFF4F5"));
 
+    public static Dialog showProgressDialog(Context context) {
 
-        return maryPopup;
-    }
+//        ProgressDialog warningDialog = new ProgressDialog(context);
+//        //warningDialog.setContentView(R.layout.layout_progress_dialog);
+//        warningDialog.setCanceledOnTouchOutside(false);
+//        warningDialog.setTitle("Loading");
+//        warningDialog.setMessage("Please wait...");
+//        warningDialog.setCancelable(false);
+//        warningDialog.show();
 
-    public static ProgressDialog showProgressDialog(Context context) {
-
-        ProgressDialog warningDialog = new ProgressDialog(context);
-        // warningDialog.setContentView(R.layout.layout_progress_dialog);
-
-
+        Dialog warningDialog = new Dialog(context);
+        warningDialog.setContentView(R.layout.layout_progress_dialog);
+        warningDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         warningDialog.setCanceledOnTouchOutside(false);
-        warningDialog.setTitle("Loading");
-        warningDialog.setMessage("Please wait...");
         warningDialog.setCancelable(false);
         warningDialog.show();
         return warningDialog;
+    }
+
+    public static Dialog errorDialog(Context context,String error) {
+
+        Dialog errorDialog = new Dialog(context);
+        errorDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        errorDialog.getWindow().setElevation(0);
+        //errorDialog.getWindow().setLayout((int) WindowManager.LayoutParams.WRAP_CONTENT,  WindowManager.LayoutParams.WRAP_CONTENT);
+        @SuppressLint("InflateParams")
+        View customView_ = LayoutInflater.from(context).inflate(R.layout.layout_error_popup, null);
+        TextView tv_error_ = customView_.findViewById(R.id.tv_error);
+        TextView tvOkey = customView_.findViewById(R.id.tv_error_ok);
+        tv_error_.setText(error);
+
+        tvOkey.setOnClickListener(v -> {
+            errorDialog.cancel();
+        });
+
+
+       // errorDialog.addContentView(customView_,new WindowManager.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT,  WindowManager.LayoutParams.WRAP_CONTENT));
+        errorDialog.setContentView(customView_);
+        errorDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        errorDialog.setCanceledOnTouchOutside(false);
+        errorDialog.setCancelable(false);
+        errorDialog.show();
+        return errorDialog;
     }
 
     public static Dialog showLoading(Context context) {

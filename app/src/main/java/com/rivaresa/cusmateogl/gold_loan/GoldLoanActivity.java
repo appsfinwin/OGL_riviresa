@@ -1,14 +1,16 @@
 package com.rivaresa.cusmateogl.gold_loan;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -26,6 +28,7 @@ import com.rivaresa.cusmateogl.databinding.ActivityGoldLoanBinding;
 import com.rivaresa.cusmateogl.databinding.DialogLayoutAcountsBinding;
 import com.rivaresa.cusmateogl.databinding.LayoutTermsAndCondiationsBinding;
 import com.rivaresa.cusmateogl.gold_loan.action.GoldLoanAction;
+import com.rivaresa.cusmateogl.utils.Services;
 
 public class GoldLoanActivity extends BaseActivity {
 
@@ -68,7 +71,8 @@ public class GoldLoanActivity extends BaseActivity {
                         break;
 
                     case GoldLoanAction.API_ERROR:
-                        Toast.makeText(GoldLoanActivity.this, goldLoanAction.getError(), Toast.LENGTH_SHORT).show();
+                        Services.errorDialog(GoldLoanActivity.this, goldLoanAction.getError());
+
                         break;
 
                     case GoldLoanAction.CLICK_CHANGE_ACCOUNT:
@@ -89,6 +93,7 @@ public class GoldLoanActivity extends BaseActivity {
                         break;
 
                     case GoldLoanAction.BANK_DETAILS_ERROR:
+
                         showError(goldLoanAction.getError());
                         break;
 
@@ -108,31 +113,33 @@ public class GoldLoanActivity extends BaseActivity {
 
     public void showError(String error) {
 
-        Dialog warningDialog = new Dialog(this);
 
-        LayoutInflater inflater= this.getLayoutInflater();
-        View view=inflater.inflate(R.layout.layout_popup,null);
-        TextView errorMessage=view.findViewById(R.id.txt_msg);
-        TextView ok=view.findViewById(R.id.tv_email);
-        errorMessage.setText(error);
+         Dialog dialog= new Dialog(GoldLoanActivity.this);
+                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        ok.setText("OK");
-        ok.setTextColor(getResources().getColor(R.color.colorPrimary));
-        ok.setTextSize(16);
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                warningDialog.dismiss();
-            }
-        });
-        warningDialog.setContentView(view);
-        //warningDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        warningDialog.getWindow().setLayout(( WindowManager.LayoutParams.MATCH_PARENT), WindowManager.LayoutParams.WRAP_CONTENT);
-        warningDialog.setCanceledOnTouchOutside(false);
-        warningDialog.setCancelable(true);
-        warningDialog.show();
+                        dialog.getWindow().setElevation(0);
+                        //errorDialog.getWindow().setLayout((int) WindowManager.LayoutParams.WRAP_CONTENT,  WindowManager.LayoutParams.WRAP_CONTENT);
+                        @SuppressLint("InflateParams")
+                        View customView_ = LayoutInflater.from(GoldLoanActivity.this).inflate(R.layout.layout_error_popup, null);
+                        TextView tv_error_ = customView_.findViewById(R.id.tv_error);
+                        TextView tvOkey = customView_.findViewById(R.id.tv_error_ok);
+                        tv_error_.setText(error);
+
+                        tvOkey.setOnClickListener(v -> {
+                            finish();
+                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                            dialog.cancel();
+                        });
+
+
+                        // errorDialog.addContentView(customView_,new WindowManager.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT,  WindowManager.LayoutParams.WRAP_CONTENT));
+                        dialog.setContentView(customView_);
+                        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+                        dialog.setCanceledOnTouchOutside(false);
+                        dialog.setCancelable(false);
+                        dialog.show();
+
+
 
     }
 

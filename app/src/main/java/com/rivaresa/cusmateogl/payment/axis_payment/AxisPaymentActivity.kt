@@ -2,7 +2,6 @@ package com.rivaresa.cusmateogl.payment.axis_payment
 
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -60,7 +59,7 @@ class AxisPaymentActivity : BaseActivity() {
     lateinit var successDialog: Dialog
     private var mySwipeRefreshLayout: SwipeRefreshLayout? = null
     private val TAG = "AxisPaymentActivity"
-    var loading: ProgressDialog? = null
+    var loading: Dialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_axis_payment)
@@ -111,9 +110,9 @@ class AxisPaymentActivity : BaseActivity() {
                 PaymentAction.TOKEN_GENERATION_ERROR -> {
                     warningDialog = Dialog(this)
                     val inflater = this.layoutInflater
-                    val view = inflater.inflate(R.layout.layout_popup, null)
-                    val errorMessage = view.findViewById<TextView>(R.id.txt_msg)
-                    val ok = view.findViewById<TextView>(R.id.tv_email)
+                    val view = inflater.inflate(R.layout.layout_error_popup, null)
+                    val errorMessage = view.findViewById<TextView>(R.id.tv_error)
+                    val ok = view.findViewById<TextView>(R.id.tv_error_ok)
                     errorMessage.text = it.error
                     ok.text = "OK"
                     ok.setTextColor(resources.getColor(R.color.colorPrimary))

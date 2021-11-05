@@ -2,12 +2,9 @@ package com.rivaresa.cusmateogl.login;
 
 import android.app.Activity;
 import android.app.Application;
-import android.app.ProgressDialog;
+import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,8 +14,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.meetic.marypopup.MaryPopup;
-import com.rivaresa.cusmateogl.R;
 import com.rivaresa.cusmateogl.login.action.LoginAction;
 import com.rivaresa.cusmateogl.retrofit.ApiInterface;
 import com.rivaresa.cusmateogl.retrofit.RetrofitClient;
@@ -56,7 +51,7 @@ public class LoginViewmodel extends AndroidViewModel {
 
     public ObservableField<String> of_username=new ObservableField<>("");
     public ObservableField<String> of_password=new ObservableField<>("");
-    ProgressDialog loading;
+    Dialog loading;
 
 
     public void initLoading(Context context) {
@@ -133,27 +128,6 @@ public class LoginViewmodel extends AndroidViewModel {
         this.activity=loginActivity;
     }
 
-    public void ErrorDialoge(String error)
-    {
-        MaryPopup maryPopup;
-        maryPopup = MaryPopup.with((activity))
-                .cancellable(false)
-                .draggable(true)
-                .scaleDownDragging(true)
-                .fadeOutDragging(true)
-                .center(true)
-
-                .blackOverlayColor(Color.parseColor("#DD444444"))
-                .backgroundColor(Color.parseColor("#EFF4F5"));
-
-        LayoutInflater inflater= activity.getLayoutInflater();
-        View view=inflater.inflate(R.layout.layout_popup,null);
-        TextView errorMessage=view.findViewById(R.id.txt_msg);
-        errorMessage.setText(error);
-
-        maryPopup.from(view);
-        maryPopup.content(view).show();
-    }
 
     public void clickForgotPassword(View view)
     {

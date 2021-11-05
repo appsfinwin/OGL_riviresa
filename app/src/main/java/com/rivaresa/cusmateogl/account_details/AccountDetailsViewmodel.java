@@ -13,7 +13,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.rivaresa.cusmateogl.account_details.pojo.Table;
-import com.rivaresa.cusmateogl.databinding.ActivityAccountDetailsBinding;
 import com.rivaresa.cusmateogl.retrofit.ApiInterface;
 import com.rivaresa.cusmateogl.retrofit.RetrofitClient;
 import com.rivaresa.cusmateogl.utils.Services;
@@ -29,7 +28,7 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 public class AccountDetailsViewmodel extends AndroidViewModel {
-    ActivityAccountDetailsBinding binding;
+
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     ApiInterface apiInterface;
@@ -37,7 +36,7 @@ public class AccountDetailsViewmodel extends AndroidViewModel {
     CompositeDisposable compositeDisposable;
 
     ObservableField<List<Table>> bankDetailsList= new ObservableField<>();
-
+    MutableLiveData<AccountAction> mAction;
     public AccountDetailsViewmodel(@NonNull Application application) {
         super(application);
         sharedPreferences = application.getSharedPreferences("login", Context.MODE_PRIVATE);
@@ -52,36 +51,11 @@ public class AccountDetailsViewmodel extends AndroidViewModel {
 
 
 
-    public void setBinding(ActivityAccountDetailsBinding binding) {
-        this.binding = binding;
-    }
-
-    MutableLiveData<AccountAction> mAction;
-
-    public void setInitData(List<Table> bankDetails) {
-        bankDetailsList.set(bankDetails);
-        for (Table table: bankDetails)
-        {
-            if (table.getIsDefault().equals("Y"))
-            {
-                binding.tvAccountNumber.setText(table.getAccNo());
-                binding.tvBankName.setText(table.getBank());
-                binding.tvIfsc.setText(table.getIFSCCode());
-                binding.tvBranch.setText(table.getBranch());
-                binding.tvName.setText(sharedPreferences.getString("name", ""));
-                binding.tvEmail.setText(sharedPreferences.getString("email", ""));
-                binding.tvMobile.setText(sharedPreferences.getString("phone", ""));
-
-                editor.putString("CustBankId", table.getCustBankId());
-                editor.putString("bankAccountNumber", table.getAccNo());
-                editor.putString("bankIfsc", table.getIFSCCode());
-                editor.commit();
-            }
-
-        }
 
 
-    }
+
+
+
 
     public void clickClosedLoans(View view) {
         mAction.setValue(new AccountAction(AccountAction.CLICK_CLOSED_LOANS));
@@ -91,11 +65,12 @@ public class AccountDetailsViewmodel extends AndroidViewModel {
     }
 
     public LiveData<AccountAction> getmAction() {
+        mAction=repository.getmAction();
         return mAction;
     }
 
     public void reset() {
-        mAction.setValue(new AccountAction(AccountAction.DEFAULT));
+        //mAction.setValue(new AccountAction(AccountAction.DEFAULT));
     }
     Dialog loading;
     public void initLoading(Context context) {
@@ -127,19 +102,9 @@ public class AccountDetailsViewmodel extends AndroidViewModel {
         repository.getBankDetails(apiInterface,body);
     }
 
-    public void setBankData(Table bankDetail) {
-        binding.tvAccountNumber.setText(bankDetail.getAccNo());
-        binding.tvBankName.setText(bankDetail.getBank());
-        binding.tvIfsc.setText(bankDetail.getIFSCCode());
-        binding.tvBranch.setText(bankDetail.getBranch());
-        binding.tvName.setText(sharedPreferences.getString("name", ""));
-        binding.tvEmail.setText(sharedPreferences.getString("email", ""));
-        binding.tvMobile.setText(sharedPreferences.getString("phone", ""));
-        editor.putString("CustBankId",bankDetail.getCustBankId());
-
-        editor.putString("CustBankId", bankDetail.getCustBankId());
-        editor.putString("bankAccountNumber", bankDetail.getAccNo());
-        editor.putString("bankIfsc", bankDetail.getIFSCCode());
-        editor.commit();
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        (repository.getCompositeDisposable()).dispose();
     }
 }

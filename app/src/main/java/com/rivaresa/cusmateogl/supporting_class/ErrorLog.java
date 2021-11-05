@@ -6,7 +6,7 @@ import android.os.Build;
 public class ErrorLog {
 
     private final static String api_url_error = "ip_global" + "/Error_log";
-    final static Enc_crypter encr = new Enc_crypter();
+   // final static Enc_crypter encr = new Enc_crypter();
     //static RequestQueue queue;
 
    // public static void submitError(Context getcontext, final String erClass, final String error) {

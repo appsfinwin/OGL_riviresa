@@ -1,7 +1,7 @@
 package com.rivaresa.cusmateogl.payment.axis_payment
 
 import android.app.Application
-import android.app.ProgressDialog
+import android.app.Dialog
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -23,7 +23,7 @@ class AxisViewModel(application: Application) : AndroidViewModel(application) {
         repository.mAction=mAction
     }
 
-    var loading: ProgressDialog? = null
+    var loading: Dialog? = null
     fun initLoading(context: Context?) {
         loading = Services.showProgressDialog(context)
     }

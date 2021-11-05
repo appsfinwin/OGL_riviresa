@@ -90,7 +90,10 @@
     </style>
     <style name="alertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="fontFamily">@font/comfortaa</item>
-        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+
     </style>
 </resources>
 

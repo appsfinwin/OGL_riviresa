@@ -37,6 +37,7 @@ import com.rivaresa.cusmateogl.reset_password.otp.OtpActivity;
 import com.rivaresa.cusmateogl.signup.SignupActivity;
 import com.rivaresa.cusmateogl.supporting_class.ConstantClass;
 import com.rivaresa.cusmateogl.utils.DataHolder;
+import com.rivaresa.cusmateogl.utils.Services;
 import com.rivaresa.cusmateogl.utils.VersionChecker;
 
 import java.util.concurrent.ExecutionException;
@@ -135,7 +136,22 @@ public class LoginActivity extends BaseActivity {
 
                         break;
                     case LoginAction.API_ERROR:
-                        viewmodel.ErrorDialoge(loginAction.getError());
+                        viewmodel.cancelLoading();
+
+                        Services.errorDialog(LoginActivity.this,loginAction.getError());
+//                        View customView_ = LayoutInflater.from(LoginActivity.this).inflate(R.layout.layout_error_popup, null);
+//                        TextView tv_error_ = customView_.findViewById(R.id.tv_error);
+//                        TextView tvOkey = customView_.findViewById(R.id.tv_error_ok);
+//                        tv_error_.setText(loginAction.getError());
+//
+//
+//                        dialog.setContentView(R.layout.layout_error_popup);
+//                        dialog.setCanceledOnTouchOutside(false);
+//                        dialog.setCancelable(false);
+//                        dialog.show();
+                        //viewmodel.ErrorDialoge(loginAction.getError());
+
+
                         break;
                     case LoginAction.CLICK_FORGOT_PASSWORD:
 
@@ -217,12 +233,20 @@ public class LoginActivity extends BaseActivity {
 
 
     private void showUpdateDialog() {
-        AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this, R.style.alertDialog);
+        AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
         // Setting Dialog Title
         alertDialog2.setTitle("Update Available");
         // Setting Dialog Message
         alertDialog2.setMessage("There is a newer version of this application is available");
         // Setting Positive "Yes" Btn
+        AlertDialog dialog = alertDialog2.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface arg0) {
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.black));
+
+            }
+        });
         alertDialog2.setPositiveButton("Update",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -232,6 +256,8 @@ public class LoginActivity extends BaseActivity {
                         startActivity(i);
                     }
                 });
+
+
         alertDialog2.setCancelable(false);
         alertDialog2.show();
 

@@ -5,50 +5,53 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-<!--    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
-<!--    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
 
     <application
         android:name=".App"
         android:allowBackup="true"
+        android:exported="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        android:exported= "false"
         tools:replace="android:icon">
-        <activity android:name=".splash.SplashActivity"
-            android:screenOrientation="portrait" >
+
+        <activity
+            android:name=".splash.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".payment.axis_payment.AxisPaymentActivity"
+        <activity
+            android:name=".payment.axis_payment.AxisPaymentActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".payout.PayoutActivity"
+        <activity
+            android:name=".payout.PayoutActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".account_list.dialog_inventory_details.InventoryDetailsActivity"
+        <activity
+            android:name=".account_list.dialog_inventory_details.InventoryDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".signup.SignupActivity"
-            android:theme="@style/NewAppTheme"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/NewAppTheme" />
         <activity
             android:name=".reset_password.otp.OtpActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NewAppTheme"/>
+            android:theme="@style/NewAppTheme" />
         <activity
             android:name=".reset_password.reset_password.ResetPasswordActivity"
-            android:theme="@style/NewAppTheme"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/NewAppTheme" />
         <activity
             android:name=".reset_password.forgot_password.ForgotPasswordActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NewAppTheme"/>
+            android:theme="@style/NewAppTheme" />
         <activity
             android:name=".payment.paytm.PayUActivity"
             android:screenOrientation="portrait" />
@@ -79,11 +82,11 @@
         <activity
             android:name=".payment.paytm.PaymentActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NewAppTheme"/>
+            android:theme="@style/NewAppTheme" />
         <activity
             android:name=".select_payment.SelectPaymentActivity"
-            android:theme="@style/NewAppTheme"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/NewAppTheme" />
         <activity
             android:name=".account_details.AccountDetailsActivity"
             android:screenOrientation="portrait" />
@@ -95,11 +98,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".login.LoginActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/NewAppTheme"
-            android:windowSoftInputMode="stateAlwaysVisible"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:windowSoftInputMode="stateAlwaysVisible"></activity>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />

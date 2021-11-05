@@ -17,6 +17,7 @@ import com.rivaresa.cusmateogl.home.HomeActivity;
 import com.rivaresa.cusmateogl.login.LoginActivity;
 import com.rivaresa.cusmateogl.reset_password.otp.action.OtpAction;
 import com.rivaresa.cusmateogl.utils.DataHolder;
+import com.rivaresa.cusmateogl.utils.Services;
 
 public class OtpActivity extends BaseActivity {
     OtpViewmodel viewmodel;
@@ -47,7 +48,7 @@ public class OtpActivity extends BaseActivity {
                 viewmodel.cancelLoading();
                 switch (otpAction.getAction()) {
                     case OtpAction.API_ERROR:
-                        Toast.makeText(OtpActivity.this, otpAction.getError(), Toast.LENGTH_SHORT).show();
+                        Services.errorDialog(OtpActivity.this,otpAction.getError());
                         break;
 
                     case OtpAction.SIGNUP_SUCCESS:

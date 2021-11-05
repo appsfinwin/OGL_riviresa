@@ -17,7 +17,6 @@ import com.rivaresa.cusmateogl.retrofit.ApiInterface;
 import com.rivaresa.cusmateogl.retrofit.RetrofitClient;
 import com.rivaresa.cusmateogl.signup.action.SignupAction;
 import com.rivaresa.cusmateogl.signup.pojo.otp_response.signup_data.SIgnupData;
-import com.rivaresa.cusmateogl.supporting_class.Enc_crypter;
 import com.rivaresa.cusmateogl.utils.DataHolder;
 import com.rivaresa.cusmateogl.utils.Services;
 
@@ -42,7 +41,7 @@ public class SignupViewmodel extends AndroidViewModel {
 
     }
     ActivitySignupBinding binding;
-    final Enc_crypter encr = new Enc_crypter();
+
     SignupRepository repository;
     ApiInterface apiInterface;
     MutableLiveData<SignupAction> mAction;
