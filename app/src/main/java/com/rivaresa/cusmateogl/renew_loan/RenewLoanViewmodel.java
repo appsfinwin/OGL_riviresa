@@ -77,6 +77,8 @@ public class RenewLoanViewmodel extends AndroidViewModel {
         apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.goldLoanRenewal(apiInterface, body);
     }
+
+
     public void renewLoan(String loanAmount, String loanAccountNumber, String flag,String CustBankId) {
 
         Map<String, Object> jsonParams = new HashMap<>();
@@ -91,7 +93,7 @@ public class RenewLoanViewmodel extends AndroidViewModel {
         jsonParams.put("interest", "");
         jsonParams.put("ben_id", CustBankId);
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
-
+        String param=(new JSONObject(jsonParams)).toString();
         apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.goldLoanRenewal(apiInterface, body);
     }

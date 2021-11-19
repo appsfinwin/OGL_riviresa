@@ -1,10 +1,16 @@
 package com.rivaresa.cusmateogl.renew_loan;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.TextView;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -15,7 +21,6 @@ import com.rivaresa.cusmateogl.R;
 import com.rivaresa.cusmateogl.databinding.ActivityRenewLoanBinding;
 import com.rivaresa.cusmateogl.home.HomeActivity;
 import com.rivaresa.cusmateogl.renew_loan.action.RenewLoanAction;
-import com.rivaresa.cusmateogl.utils.Services;
 
 
 public class RenewLoanActivity extends BaseActivity {
@@ -42,6 +47,7 @@ public class RenewLoanActivity extends BaseActivity {
         if (intent != null) {
 
             if (intent.getStringExtra("from").equals("gold_loan")) {
+                binding.tvProcessingMessage.setVisibility(View.VISIBLE);
                 net_amount = intent.getStringExtra("net_amount");
                 scheme_code = intent.getStringExtra("scheme_code");
                 scheme_name = intent.getStringExtra("scheme_name");
@@ -71,6 +77,7 @@ public class RenewLoanActivity extends BaseActivity {
                         CustBankId
                 );
             } else if (intent.getStringExtra("from").equals("pay_online")) {
+                binding.tvProcessingMessage.setVisibility(View.GONE);
                 loan_account_number = sharedPreferences.getString("account_number", "");
                 net_amount = intent.getStringExtra("net_amount");
                 flag = intent.getStringExtra("flag");
@@ -104,8 +111,8 @@ public class RenewLoanActivity extends BaseActivity {
                         break;
 
                     case RenewLoanAction.API_ERROR:
-                        Services.errorDialog(RenewLoanActivity.this, renewLoanAction.getError());
-                        //showError(renewLoanAction.getError());
+
+                        showError(renewLoanAction.getError());
                         break;
                 }
             }
@@ -120,4 +127,39 @@ public class RenewLoanActivity extends BaseActivity {
         startActivity(intent1);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
+
+    public void showError(String error) {
+
+
+        Dialog dialog= new Dialog(RenewLoanActivity.this);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialog.getWindow().setElevation(0);
+        //errorDialog.getWindow().setLayout((int) WindowManager.LayoutParams.WRAP_CONTENT,  WindowManager.LayoutParams.WRAP_CONTENT);
+        @SuppressLint("InflateParams")
+        View customView_ = LayoutInflater.from(RenewLoanActivity.this).inflate(R.layout.layout_error_popup, null);
+        TextView tv_error_ = customView_.findViewById(R.id.tv_error);
+        TextView tvOkey = customView_.findViewById(R.id.tv_error_ok);
+        tv_error_.setText(error);
+
+        tvOkey.setOnClickListener(v -> {
+            Intent intent1 = new Intent(RenewLoanActivity.this, HomeActivity.class);
+            intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent1);
+            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+            dialog.cancel();
+        });
+
+
+        // errorDialog.addContentView(customView_,new WindowManager.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT,  WindowManager.LayoutParams.WRAP_CONTENT));
+        dialog.setContentView(customView_);
+        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        dialog.show();
+
+
+
+    }
+
 }

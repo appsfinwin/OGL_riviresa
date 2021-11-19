@@ -38,7 +38,8 @@ class AxisPaymentActivity : BaseActivity() {
     lateinit var webView: WebView
     lateinit var viewModel: AxisViewModel
     lateinit var binding: ActivityAxisPaymentBinding
-    var webUrl = "https://uat-etendering.axisbank.co.in/easypay2.0/frontend/api/sdkpayment"
+   // var webUrl = "https://uat-etendering.axisbank.co.in/easypay2.0/frontend/api/sdkpayment"
+    var webUrl = "https://easypay.axisbank.co.in/index.php/api/payment"
     var i = ""
     var j = ""
     var flag: String? = null

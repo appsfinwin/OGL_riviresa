@@ -9,6 +9,7 @@ import com.rivaresa.cusmateogl.login.pojo.LoginResponse;
 import com.rivaresa.cusmateogl.reset_password.otp.pojo.otp_creation.OtpCreationResponse;
 import com.rivaresa.cusmateogl.retrofit.ApiInterface;
 
+import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
@@ -107,7 +108,7 @@ public class LoginRepository {
                         if (e instanceof SocketTimeoutException)
                         {
                             mAction.setValue(new LoginAction(LoginAction.API_ERROR,"Timeout! Please try again later"));
-                        }else if (e instanceof UnknownHostException)
+                        }else if (e instanceof UnknownHostException || e instanceof  ConnectException)
                         {
                             mAction.setValue(new LoginAction(LoginAction.API_ERROR,"No Internet"));
                         }else {

@@ -31,8 +31,8 @@ public class RetrofitClient {
 
                     //.baseUrl("http://192.168.0.221:170/")
                     //.baseUrl("http://oglsales.digicob.in/")//sales
-                    .baseUrl("http://testriviresaogl.digicob.in/")//test rivaresa
-                    //.baseUrl("http://oglriviresalive.digicob.in:2524/")//rivaresa
+                    //.baseUrl("http://testriviresaogl.digicob.in/")//test rivaresa
+                    .baseUrl("http://oglriviresalive.digicob.in:2524/")//rivaresa
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)

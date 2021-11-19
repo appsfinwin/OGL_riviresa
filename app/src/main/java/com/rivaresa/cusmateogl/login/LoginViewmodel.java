@@ -91,7 +91,7 @@ public class LoginViewmodel extends AndroidViewModel {
     {
         if (of_username.get().equals(""))
         {
-            Toast.makeText(view.getContext(), "please enter otp", Toast.LENGTH_SHORT).show();
+            Toast.makeText(view.getContext(), "Enter phone number", Toast.LENGTH_SHORT).show();
             //showSnakbar("Username cannot be ampty",view);
         }else if (of_password.get().equals(""))
         {

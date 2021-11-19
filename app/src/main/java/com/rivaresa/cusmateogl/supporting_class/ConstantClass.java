@@ -39,7 +39,7 @@ public class ConstantClass {
     public static final String KEY_URL = "url";
     public static final String KEY_URLTOIMAGE = "urlToImage";
     public static final String KEY_PUBLISHEDAT = "publishedAt";
-    //=============
+
     public static final String KEY_IMAGE_PATH = "imagePath";
 
     public static Boolean mpinStatus;
@@ -55,7 +55,7 @@ public class ConstantClass {
     public static final String IS_LOGIN = "IS_LOGIN";
     public static final String BACKGROUND_TIME = "BACKGROUND_TIME";
     public static final String FOREGROUND_TIME = "FOREGROUND_TIME";
-    public static final String AXIS_BASE_URL = "https://riviresapaymentbridge.digicob.in/pgmanager/easypay/v1/";
+    public static final String AXIS_BASE_URL = "https://riviresapaymentbridge.digicob.in:44335/pgmanager/easypay/v1/";
 //    public static String PREFS_MPIN = "";
 
 //    public static String QR_SCND = "QRSCND";

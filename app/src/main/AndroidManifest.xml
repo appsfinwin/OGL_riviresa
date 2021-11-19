@@ -100,7 +100,7 @@
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NewAppTheme"
-            android:windowSoftInputMode="stateAlwaysVisible"></activity>
+            android:windowSoftInputMode="stateAlwaysVisible" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />

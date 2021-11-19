@@ -66,11 +66,11 @@ public class SignupRepository {
 
                     @Override
                     public void onSuccess(OtpGenerateResponse response) {
-                        if (response.getOtpData()!=null) {
+                        if (response.getOtpData().getData()!=null) {
                             mAction.setValue(new SignupAction(SignupAction.OTP_SUCCESS, response));
 
                         }else {
-                            mAction.setValue(new SignupAction(SignupAction.API_ERROR, response.getError()));
+                            mAction.setValue(new SignupAction(SignupAction.API_ERROR, response.getOtpData().getError()));
                         }
                     }
 

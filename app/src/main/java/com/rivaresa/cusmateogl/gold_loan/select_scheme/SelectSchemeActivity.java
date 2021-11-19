@@ -1,13 +1,17 @@
 package com.rivaresa.cusmateogl.gold_loan.select_scheme;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -57,6 +61,8 @@ public class SelectSchemeActivity extends AppCompatActivity {
                 viewmodel.cancelLoading();
                 switch (selectSchemeAction.getAction()) {
                     case SelectSchemeAction.SCHEMES_ERROR:
+
+                        showError(selectSchemeAction.getError());
                         break;
 
                     case SelectSchemeAction.SCHEMES_SUCCESS:
@@ -162,4 +168,33 @@ public class SelectSchemeActivity extends AppCompatActivity {
         rvSettlement.setAdapter(paymentAdapter);
         rvSettlement.setLayoutManager(new LinearLayoutManager(this));
     }
+
+    private void showError(String error)
+    {
+        Dialog dialog= new Dialog(SelectSchemeActivity.this);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialog.getWindow().setElevation(0);
+        //errorDialog.getWindow().setLayout((int) WindowManager.LayoutParams.WRAP_CONTENT,  WindowManager.LayoutParams.WRAP_CONTENT);
+        @SuppressLint("InflateParams")
+        View customView_ = LayoutInflater.from(SelectSchemeActivity.this).inflate(R.layout.layout_error_popup, null);
+        TextView tv_error_ = customView_.findViewById(R.id.tv_error);
+        TextView tvOkey = customView_.findViewById(R.id.tv_error_ok);
+        tv_error_.setText(error);
+
+        tvOkey.setOnClickListener(v -> {
+            finish();
+            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+            dialog.cancel();
+        });
+
+
+        // errorDialog.addContentView(customView_,new WindowManager.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT,  WindowManager.LayoutParams.WRAP_CONTENT));
+        dialog.setContentView(customView_);
+        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+
 }

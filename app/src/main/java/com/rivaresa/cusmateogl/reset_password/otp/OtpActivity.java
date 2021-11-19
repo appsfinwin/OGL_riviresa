@@ -119,11 +119,24 @@ public class OtpActivity extends BaseActivity {
                   .setNegativeButton("No", null)
                   .show();
       }else if (from.equals("login")){
-          Intent intent=new Intent(this, LoginActivity.class);
-          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-          startActivity(intent);
-          overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-          finish();
+          new AlertDialog.Builder(this)
+                  .setTitle("Cancel?")
+                  .setMessage("Do you want to cancel?")
+                  .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                      @Override
+                      public void onClick(DialogInterface dialog, int which) {
+                          Intent intent=new Intent(OtpActivity.this, LoginActivity.class);
+                          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                          startActivity(intent);
+                          overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                          finish();
+                      }
+
+                  })
+                  .setNegativeButton("No", null)
+                  .show();
+
+
       }
     }
 }
