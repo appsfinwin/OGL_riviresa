@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.account_details.dialog_accounts.DialogAccountsViewmodel" />
+            type="com.riviresa.custmate.ogl.account_details.dialog_accounts.DialogAccountsViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

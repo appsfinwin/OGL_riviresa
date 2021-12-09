@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.login.LoginViewmodel" />
+            type="com.riviresa.custmate.ogl.login.LoginViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

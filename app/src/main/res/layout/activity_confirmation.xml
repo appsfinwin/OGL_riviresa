@@ -6,14 +6,14 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.final_confirmation.ConfirmationViewmodel" />
+            type="com.riviresa.custmate.ogl.final_confirmation.ConfirmationViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg_yellow"
-        tools:context=".final_confirmation.ConfirmationActivity">
+        tools:context="com.riviresa.custmate.ogl.final_confirmation.ConfirmationActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

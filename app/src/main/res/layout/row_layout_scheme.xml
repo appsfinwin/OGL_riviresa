@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.gold_loan.select_scheme.adapter.RowSchemesViewmodel" />
+            type="com.riviresa.custmate.ogl.gold_loan.select_scheme.adapter.RowSchemesViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

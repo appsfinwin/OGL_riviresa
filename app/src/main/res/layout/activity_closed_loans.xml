@@ -6,14 +6,14 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.account_details.closed_loans.ClosedLoansViewmodel" />
+            type="com.riviresa.custmate.ogl.account_details.closed_loans.ClosedLoansViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg_yellow"
-        tools:context=".account_details.closed_loans.ClosedLoansActivity">
+        tools:context="com.riviresa.custmate.ogl.account_details.closed_loans.ClosedLoansActivity">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

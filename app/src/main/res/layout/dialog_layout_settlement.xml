@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.gold_loan.select_scheme.dialog.SettlementDialogViewmodel" />
+            type="com.riviresa.custmate.ogl.gold_loan.select_scheme.dialog.SettlementDialogViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

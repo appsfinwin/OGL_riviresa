@@ -6,14 +6,14 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.home.HomeViewmodel" />
+            type="com.riviresa.custmate.ogl.home.HomeViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:background="@color/bg_yellow"
         android:layout_height="match_parent"
-        tools:context=".home.HomeActivity">
+        tools:context="com.riviresa.custmate.ogl.home.HomeActivity">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

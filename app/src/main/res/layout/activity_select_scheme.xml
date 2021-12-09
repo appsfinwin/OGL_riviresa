@@ -6,14 +6,14 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.gold_loan.select_scheme.SelectSchemeViewmodel" />
+            type="com.riviresa.custmate.ogl.gold_loan.select_scheme.SelectSchemeViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg_yellow"
-        tools:context=".gold_loan.select_scheme.SelectSchemeActivity">
+        tools:context="com.riviresa.custmate.ogl.gold_loan.select_scheme.SelectSchemeActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"

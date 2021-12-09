@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.payment.paytm.adapter.RowPaymentViewmodel" />
+            type="com.riviresa.custmate.ogl.payment.paytm.adapter.RowPaymentViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.finialize_amount.FinalizeAmountViewmodel" />
+            type="com.riviresa.custmate.ogl.finialize_amount.FinalizeAmountViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg_yellow"
-        tools:context=".finialize_amount.FinalizeAmountActivity">
+        tools:context="com.riviresa.custmate.ogl.finialize_amount.FinalizeAmountActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:background="@drawable/bg_white_round"

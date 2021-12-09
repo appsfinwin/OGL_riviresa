@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.calculator.adapter.RowCalculatorViewmodel" />
+            type="com.riviresa.custmate.ogl.calculator.adapter.RowCalculatorViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

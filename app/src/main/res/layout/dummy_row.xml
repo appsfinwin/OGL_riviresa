@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.home.HomeViewmodel" />
+            type="com.riviresa.custmate.ogl.home.HomeViewmodel" />
     </data>
 
 

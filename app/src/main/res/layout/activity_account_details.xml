@@ -6,14 +6,14 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.account_details.AccountDetailsViewmodel" />
+            type="com.riviresa.custmate.ogl.account_details.AccountDetailsViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg_yellow"
-        tools:context=".account_details.AccountDetailsActivity">
+        tools:context="com.riviresa.custmate.ogl.account_details.AccountDetailsActivity">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"

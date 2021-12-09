@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.account_list.adapter.AccountListRowViewmodel" />
+            type="com.riviresa.custmate.ogl.account_list.adapter.AccountListRowViewmodel" />
     </data>
 
     <androidx.cardview.widget.CardView

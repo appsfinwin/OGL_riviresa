@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.payment.paytm.PaymentViewmodel" />
+            type="com.riviresa.custmate.ogl.payment.paytm.PaymentViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:id="@+id/main_layout"
         android:background="@color/bg_yellow"
-        tools:context=".payment.paytm.PaymentActivity">
+        tools:context="com.riviresa.custmate.ogl.payment.paytm.PaymentActivity">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

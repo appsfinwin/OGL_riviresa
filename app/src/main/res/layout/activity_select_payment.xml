@@ -7,13 +7,13 @@
 
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.select_payment.SelectPaymentViewmodel" />
+            type="com.riviresa.custmate.ogl.select_payment.SelectPaymentViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".select_payment.SelectPaymentActivity">
+        tools:context="com.riviresa.custmate.ogl.select_payment.SelectPaymentActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout8"

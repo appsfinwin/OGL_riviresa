@@ -6,13 +6,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.rivaresa.cusmateogl.payment.axis_payment.AxisViewModel" />
+            type="com.riviresa.custmate.ogl.payment.axis_payment.AxisViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".payment.axis_payment.AxisPaymentActivity">
+        tools:context="com.riviresa.custmate.ogl.payment.axis_payment.AxisPaymentActivity">
 
         <WebView
             android:id="@+id/web_view"

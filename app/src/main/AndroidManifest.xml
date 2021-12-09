@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.rivaresa.cusmateogl">
+    package="com.riviresa.custmate">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".App"
+        android:name="com.riviresa.custmate.ogl.App"
         android:allowBackup="true"
-        android:exported="false"
+        android:exported="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -17,95 +17,125 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
-
-        <activity
-            android:name=".splash.SplashActivity"
-            android:screenOrientation="portrait">
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.payment.razor_pay.RazorPayActivity"
+            android:screenOrientation="portrait"
+              />
+         <activity
+            android:name="com.riviresa.custmate.ogl.splash.SplashActivity"
+            android:screenOrientation="portrait"
+             android:exported="true"
+           >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".payment.axis_payment.AxisPaymentActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.payment.axis_payment.AxisPaymentActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".payout.PayoutActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.payout.PayoutActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".account_list.dialog_inventory_details.InventoryDetailsActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.account_list.dialog_inventory_details.InventoryDetailsActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".signup.SignupActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.signup.SignupActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NewAppTheme" />
-        <activity
-            android:name=".reset_password.otp.OtpActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.reset_password.otp.OtpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NewAppTheme" />
-        <activity
-            android:name=".reset_password.reset_password.ResetPasswordActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.reset_password.reset_password.ResetPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NewAppTheme" />
-        <activity
-            android:name=".reset_password.forgot_password.ForgotPasswordActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.reset_password.forgot_password.ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NewAppTheme" />
-        <activity
-            android:name=".payment.paytm.PayUActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.payment.paytm.PayUActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".contact.ContactActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.contact.ContactActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".renew_loan.RenewLoanActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.renew_loan.RenewLoanActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".final_confirmation.ConfirmationActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.final_confirmation.ConfirmationActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".calculator.CalculatorActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.calculator.CalculatorActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".finialize_amount.FinalizeAmountActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.finialize_amount.FinalizeAmountActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".gold_loan.select_scheme.SelectSchemeActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.gold_loan.select_scheme.SelectSchemeActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".account_details.closed_loans.ClosedLoansActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.account_details.closed_loans.ClosedLoansActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".gold_loan.GoldLoanActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.gold_loan.GoldLoanActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".payment.paytm.PaymentActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.payment.paytm.PaymentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NewAppTheme" />
-        <activity
-            android:name=".select_payment.SelectPaymentActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.select_payment.SelectPaymentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NewAppTheme" />
-        <activity
-            android:name=".account_details.AccountDetailsActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.account_details.AccountDetailsActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".account_list.AccountListActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.account_list.AccountListActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".home.HomeActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.home.HomeActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".login.LoginActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.login.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NewAppTheme"
             android:windowSoftInputMode="stateAlwaysVisible" />
-        <activity
-            android:name=".MainActivity"
+         <activity
+             android:exported="false"
+            android:name="com.riviresa.custmate.ogl.MainActivity"
             android:screenOrientation="portrait" />
 
         <uses-library
+            android:exported="true"
             android:name="org.apache.http.legacy"
             android:required="false" />
     </application>

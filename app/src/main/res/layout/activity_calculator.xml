@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.calculator.CalculatorViewmodel" />
+            type="com.riviresa.custmate.ogl.calculator.CalculatorViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +14,7 @@
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".calculator.CalculatorActivity">
+        tools:context="com.riviresa.custmate.ogl.calculator.CalculatorActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:background="@drawable/bg_white_round"

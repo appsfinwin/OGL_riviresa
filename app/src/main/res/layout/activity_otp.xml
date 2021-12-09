@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.reset_password.otp.OtpViewmodel" />
+            type="com.riviresa.custmate.ogl.reset_password.otp.OtpViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".payment.paytm.PayUActivity">
+    tools:context="com.riviresa.custmate.ogl.payment.paytm.PayUActivity">
 
     <WebView
         android:id="@+id/webviewPayment"

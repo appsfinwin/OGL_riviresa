@@ -6,14 +6,14 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.renew_loan.RenewLoanViewmodel" />
+            type="com.riviresa.custmate.ogl.renew_loan.RenewLoanViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg_yellow"
-        tools:context=".renew_loan.RenewLoanActivity">
+        tools:context="com.riviresa.custmate.ogl.renew_loan.RenewLoanActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"

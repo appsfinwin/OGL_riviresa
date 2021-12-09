@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.finialize_amount.RowAccountViewmodel" />
+            type="com.riviresa.custmate.ogl.finialize_amount.RowAccountViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

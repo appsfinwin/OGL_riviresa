@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.account_details.closed_loans.adapter.RowClosedLoansViewmodel" />
+            type="com.riviresa.custmate.ogl.account_details.closed_loans.adapter.RowClosedLoansViewmodel" />
     </data>
 
     <androidx.cardview.widget.CardView

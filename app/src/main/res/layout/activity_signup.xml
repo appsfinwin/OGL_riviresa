@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.rivaresa.cusmateogl.signup.SignupViewmodel" />
+            type="com.riviresa.custmate.ogl.signup.SignupViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg_yellow"
-        tools:context=".signup.SignupActivity">
+        tools:context="com.riviresa.custmate.ogl.signup.SignupActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
