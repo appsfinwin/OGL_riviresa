@@ -30,6 +30,7 @@ import com.google.android.play.core.install.model.UpdateAvailability;
 import com.riviresa.custmate.R;
 import com.riviresa.custmate.databinding.ActivityLoginBinding;
 import com.riviresa.custmate.ogl.BaseActivity;
+import com.riviresa.custmate.ogl.home.HomeActivity;
 import com.riviresa.custmate.ogl.login.action.LoginAction;
 import com.riviresa.custmate.ogl.reset_password.forgot_password.ForgotPasswordActivity;
 import com.riviresa.custmate.ogl.reset_password.otp.OtpActivity;
@@ -96,8 +97,6 @@ public class LoginActivity extends BaseActivity {
                 case LoginAction.LOGIN_SUCCESS:
 
                     if (loginAction.getLoginResponse().getBankDetails().size() > 0) {
-                        //DataHolder.getInstance().bankDetails = (loginAction.getLoginResponse().getBankDetails());
-                        //DataHolder.getInstance().selectedBankData = loginAction.getLoginResponse().getBankDetails().get(0);
                     }
 
                     DataHolder.getInstance().loginData = (loginAction.getLoginResponse().getLoginData());
@@ -110,14 +109,14 @@ public class LoginActivity extends BaseActivity {
                     editor.putBoolean(ConstantClass.IS_LOGIN,false);
                     editor.commit();
 
-                    viewmodel.initLoading(LoginActivity.this);
-                    viewmodel.generateOtp(loginAction.loginResponse.getLoginData().getPhoneNum());
+//                    viewmodel.initLoading(LoginActivity.this);
+//                    viewmodel.generateOtp(loginAction.loginResponse.getLoginData().getPhoneNum());
 
-//                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-//                        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                        startActivity(intent);
-//                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-//                        finish();
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                        finish();
 
                     break;
 
@@ -142,18 +141,6 @@ public class LoginActivity extends BaseActivity {
                     viewmodel.cancelLoading();
 
                     Services.errorDialog(LoginActivity.this,loginAction.getError());
-//                        View customView_ = LayoutInflater.from(LoginActivity.this).inflate(R.layout.layout_error_popup, null);
-//                        TextView tv_error_ = customView_.findViewById(R.id.tv_error);
-//                        TextView tvOkey = customView_.findViewById(R.id.tv_error_ok);
-//                        tv_error_.setText(loginAction.getError());
-//
-//
-//                        dialog.setContentView(R.layout.layout_error_popup);
-//                        dialog.setCanceledOnTouchOutside(false);
-//                        dialog.setCancelable(false);
-//                        dialog.show();
-                    //viewmodel.ErrorDialoge(loginAction.getError());
-
 
                     break;
                 case LoginAction.CLICK_FORGOT_PASSWORD:
@@ -163,13 +150,6 @@ public class LoginActivity extends BaseActivity {
                     startActivity(forgotIntent);
                     overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
-//                        View customView= LayoutInflater.from(LoginActivity.this).inflate(R.layout.layout_error_layout,null);
-//                        TextView tv_error=customView.findViewById(R.id.tv_error);
-//                        tv_error.setText("Customer executive will contact you soon");
-//                        new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.SUCCESS_TYPE)
-//                                .setTitleText("Request has been made!")
-//                                .setCustomView(customView)
-//                                .show();
                     break;
 
                 case LoginAction.CLICK_SIGN_UP:

@@ -41,6 +41,7 @@ public class HomeActivity extends BaseActivity {
         binding.tvEmail.setText(sharedPreferences.getString("email", ""));
         binding.tvPhone.setText(sharedPreferences.getString("phone", ""));
 
+
         viewmodel.getmAction().observe(this, new Observer<HomeAction>() {
             @Override
             public void onChanged(HomeAction homeAction) {
