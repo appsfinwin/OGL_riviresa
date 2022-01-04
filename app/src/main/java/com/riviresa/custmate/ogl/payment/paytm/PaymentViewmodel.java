@@ -28,7 +28,6 @@ import java.util.Map;
 import io.reactivex.disposables.CompositeDisposable;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
-import retrofit2.Retrofit;
 
 public class PaymentViewmodel extends AndroidViewModel {
     public PaymentViewmodel(@NonNull Application application) {
@@ -39,6 +38,7 @@ public class PaymentViewmodel extends AndroidViewModel {
         this.application = application;
         repository.setDisposible(compositeDisposable);
         mAction = new MutableLiveData<>();
+        apiInterface= RetrofitClient.getApi();
     }
 
     ActivityPaymentBinding binding;
@@ -46,7 +46,6 @@ public class PaymentViewmodel extends AndroidViewModel {
     Application application;
     CompositeDisposable compositeDisposable;
     MutableLiveData<PaymentAction> mAction;
-    Retrofit retrofit;
     ApiInterface apiInterface;
 
     public ObservableField<String> balance = new ObservableField<>("");
@@ -75,8 +74,6 @@ public class PaymentViewmodel extends AndroidViewModel {
 
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
-
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.getSettlementDetails(apiInterface, body);
     }
 
@@ -155,8 +152,6 @@ public class PaymentViewmodel extends AndroidViewModel {
 
         // https://securegw-stage.paytm.in/order/process/theia/paytmCallback?ORDER_ID="+orderIdString
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jobj)).toString());
-
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         //repository.getChecksum(apiInterface,body);
 
         mAction.setValue(new PaymentAction(PaymentAction.CHECKSUM_SUCCESS));

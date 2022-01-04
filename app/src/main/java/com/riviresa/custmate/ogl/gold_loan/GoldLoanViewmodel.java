@@ -16,6 +16,7 @@ import androidx.databinding.ObservableField;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
 import com.riviresa.custmate.R;
 import com.riviresa.custmate.databinding.ActivityGoldLoanBinding;
 import com.riviresa.custmate.ogl.account_details.pojo.Table;
@@ -45,6 +46,7 @@ public class GoldLoanViewmodel extends AndroidViewModel {
         repository.setmAction(mAction);
         sharedPreferences = application.getSharedPreferences("login", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
+        apiInterface= RetrofitClient.getApi();
     }
 
     //    public void setInitData(Table bankDetails) {
@@ -94,8 +96,6 @@ public class GoldLoanViewmodel extends AndroidViewModel {
         //params.put("data", encr.conRevString(Enc_Utils.enValues(items)));
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(items)).toString());
-
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.getBankDetails(apiInterface, body);
     }
 
@@ -149,7 +149,6 @@ public class GoldLoanViewmodel extends AndroidViewModel {
 
     public void getTermsAndConditions() {
 
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.getTerms(apiInterface);
     }
 

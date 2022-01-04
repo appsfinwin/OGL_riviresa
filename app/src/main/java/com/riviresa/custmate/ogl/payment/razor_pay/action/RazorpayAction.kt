@@ -1,4 +1,5 @@
 package com.riviresa.custmate.ogl.payment.razor_pay.action
+import com.riviresa.custmate.ogl.payment.razor_pay.pojo.GetKeyResponse
 import com.riviresa.custmate.ogl.payment.razor_pay.pojo.GetOrderIdResponse
 import com.riviresa.custmate.ogl.payment.razor_pay.pojo.VerifyPaymentResponse
 
@@ -11,11 +12,13 @@ class RazorpayAction {
         const val GET_ORDER_ID_SUCCESS=2
         const val PAYMENT_SUCCESS=3
         const val PAYMENT_ERROR=4
+        const val GET_RAZOR_KEY_SUCCESS=5
     }
     var action: Int?=null
     var getOrderIdResponse: GetOrderIdResponse?= null
     var error: String ?=null
     var verifyPaymentResponse: VerifyPaymentResponse? =null
+    var getKeyResponse: GetKeyResponse?=null
 
 
     constructor(action: Int?) {
@@ -35,6 +38,11 @@ class RazorpayAction {
     constructor(action: Int?, verifyPaymentResponse: VerifyPaymentResponse?) {
         this.action = action
         this.verifyPaymentResponse = verifyPaymentResponse
+    }
+
+    constructor(action: Int?, getKeyResponse: GetKeyResponse?) {
+        this.action = action
+        this.getKeyResponse = getKeyResponse
     }
 
 

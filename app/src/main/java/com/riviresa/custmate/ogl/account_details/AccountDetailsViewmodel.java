@@ -12,9 +12,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.riviresa.custmate.ogl.retrofit.ApiInterface;
-import com.riviresa.custmate.ogl.retrofit.RetrofitClient;
-import com.riviresa.custmate.ogl.utils.Services;
 import com.riviresa.custmate.ogl.account_details.pojo.Table;
 import com.riviresa.custmate.ogl.retrofit.ApiInterface;
 import com.riviresa.custmate.ogl.retrofit.RetrofitClient;
@@ -50,6 +47,8 @@ public class AccountDetailsViewmodel extends AndroidViewModel {
 
         repository.setCompositeDisposable(compositeDisposable);
         repository.setmAction(mAction);
+        apiInterface= RetrofitClient.getApi();
+
     }
 
 
@@ -101,7 +100,7 @@ public class AccountDetailsViewmodel extends AndroidViewModel {
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(items)).toString());
 
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
+//        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.getBankDetails(apiInterface,body);
     }
 

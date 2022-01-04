@@ -13,10 +13,6 @@ import com.riviresa.custmate.ogl.account_details.closed_loans.action.ClosedLoanA
 import com.riviresa.custmate.ogl.retrofit.ApiInterface;
 import com.riviresa.custmate.ogl.retrofit.RetrofitClient;
 import com.riviresa.custmate.ogl.utils.Services;
-import com.riviresa.custmate.ogl.account_details.closed_loans.action.ClosedLoanAction;
-import com.riviresa.custmate.ogl.retrofit.ApiInterface;
-import com.riviresa.custmate.ogl.retrofit.RetrofitClient;
-import com.riviresa.custmate.ogl.utils.Services;
 
 import org.json.JSONObject;
 
@@ -26,7 +22,6 @@ import java.util.Map;
 import io.reactivex.disposables.CompositeDisposable;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
-import retrofit2.Retrofit;
 
 public class ClosedLoansViewmodel extends AndroidViewModel {
     public ClosedLoansViewmodel(@NonNull Application application) {
@@ -40,12 +35,12 @@ public class ClosedLoansViewmodel extends AndroidViewModel {
         sharedPreferences=application.getSharedPreferences("login", Context.MODE_PRIVATE);
         repository.setCompositeDisposable(compositeDisposable);
         mAction=new MutableLiveData<>();
+        apiInterface= RetrofitClient.getApi();
     }
 
     Application application;
     ClosedLoansRepository repository;
     CompositeDisposable compositeDisposable;
-    Retrofit retrofit;
     ApiInterface apiInterface;
     SharedPreferences sharedPreferences;
     MutableLiveData<ClosedLoanAction> mAction;
@@ -55,8 +50,6 @@ public class ClosedLoansViewmodel extends AndroidViewModel {
         Map<String, Object> jsonParams = new HashMap<>();
         jsonParams.put("cust_id", sharedPreferences.getString("cust_id",""));
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
-
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.getClosedLoans(apiInterface,body);
     }
 

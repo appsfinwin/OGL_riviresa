@@ -5,10 +5,7 @@ import android.app.Dialog
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.riviresa.custmate.ogl.payment.action.PaymentAction
-import com.riviresa.custmate.ogl.retrofit.ApiInterface
 import com.riviresa.custmate.ogl.retrofit.RetrofitClient
-import com.riviresa.custmate.ogl.utils.Services
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import org.json.JSONObject
@@ -50,7 +47,7 @@ class AxisViewModel(application: Application) : AndroidViewModel(application) {
                 JSONObject(jsonParams).toString()
         )
 
-        apiInterface = com.riviresa.custmate.ogl.retrofit.RetrofitClient.RetrofitAxis()?.create(com.riviresa.custmate.ogl.retrofit.ApiInterface::class.java)!!
+        apiInterface = RetrofitClient.getAxisApi()
         repository.getToken(apiInterface, body)
     }
 
@@ -64,7 +61,7 @@ class AxisViewModel(application: Application) : AndroidViewModel(application) {
                 JSONObject(jsonParams).toString()
         )
 
-        apiInterface = com.riviresa.custmate.ogl.retrofit.RetrofitClient.RetrofitAxis()?.create(com.riviresa.custmate.ogl.retrofit.ApiInterface::class.java)!!
+        apiInterface = RetrofitClient.getAxisApi()
         repository.getPaymentResponse(apiInterface, i)
     }
 }

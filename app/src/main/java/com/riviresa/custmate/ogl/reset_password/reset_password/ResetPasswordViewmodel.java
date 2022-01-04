@@ -41,6 +41,7 @@ public class ResetPasswordViewmodel extends AndroidViewModel {
         disposable=new CompositeDisposable();
         repository.setCompositeDisposable(compositeDisposable);
         repository.setmAction(mAction);
+        apiInterface= RetrofitClient.getApi();
     }
 
     public ObservableField<String> otpValue= new ObservableField<>("");
@@ -114,8 +115,6 @@ public class ResetPasswordViewmodel extends AndroidViewModel {
         items.put("NewPassword", newPassword.get());
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(items)).toString());
-
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.validateOtp(apiInterface,body);
     }
 
@@ -129,8 +128,6 @@ public class ResetPasswordViewmodel extends AndroidViewModel {
         //params.put("data", encr.conRevString(Enc_Utils.enValues(items)));
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(items)).toString());
-
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.resendOtp(apiInterface,body);
     }
 

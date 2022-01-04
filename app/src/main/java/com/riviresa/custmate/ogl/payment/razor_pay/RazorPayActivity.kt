@@ -12,7 +12,6 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -43,6 +42,7 @@ class RazorPayActivity : com.riviresa.custmate.ogl.BaseActivity(), PaymentResult
     var inventoryNo: kotlin.String? = null
     var customerId: kotlin.String? = null
     var loan_account_number: kotlin.String? = null
+    var paymentType: kotlin.String? = null
     var ifsc = ""
     var account_number: kotlin.String? = ""
     private lateinit var viewModel: RazorPayViewModel
@@ -50,6 +50,7 @@ class RazorPayActivity : com.riviresa.custmate.ogl.BaseActivity(), PaymentResult
     lateinit var warningDialog: Dialog
     lateinit var successDialog: Dialog
     var orderId = ""
+    var razorKey = ""
     var amount: Double = 0.0
     var tranId: String = ""
 
@@ -75,13 +76,13 @@ class RazorPayActivity : com.riviresa.custmate.ogl.BaseActivity(), PaymentResult
             loan_account_number = sharedPreferences.getString("account_number", "")
             net_amount = intent.getStringExtra("net_amount")
             flag = intent.getStringExtra("flag")
+            paymentType = intent.getStringExtra("paymentType")
 
             //viewModel.initLoading(this)
             //viewModel.getToken(loan_account_number, net_amount, DataHolder.getInstance().loginData.name)
             amount = (net_amount?.toDouble())?.times(100)!!
-
             viewModel.initLoading(this)
-            viewModel.getOrderId(amount = amount.toInt(), loan_account_number)
+            viewModel.getRazorKey()
 
             //startPayment(amount)
         }
@@ -92,14 +93,19 @@ class RazorPayActivity : com.riviresa.custmate.ogl.BaseActivity(), PaymentResult
                 RazorpayAction.API_ERROR -> {}
                 RazorpayAction.GET_ORDER_ID_SUCCESS -> {
                     orderId = it.getOrderIdResponse?.Data?.id.toString()
-
-                    startPayment(amount, orderId)
+                    if (razorKey!=""){
+                    startPayment(amount, orderId)}
                 }
                 RazorpayAction.PAYMENT_SUCCESS -> {
                     showSuccess(tranId)
                 }
                 RazorpayAction.PAYMENT_ERROR -> {
                     showError(error = "Payment Failed!", 111)
+                }
+                RazorpayAction.GET_RAZOR_KEY_SUCCESS -> {
+                    razorKey = it.getKeyResponse?.Data?.key ?: ""
+                    viewModel.initLoading(this)
+                    viewModel.getOrderId(amount = amount.toInt(), loan_account_number)
                 }
 
             }
@@ -110,14 +116,14 @@ class RazorPayActivity : com.riviresa.custmate.ogl.BaseActivity(), PaymentResult
     private fun startPayment(amount: Double?, orderId: String) {
         val activity: Activity = this
         val co = Checkout()
-        co.setKeyID(com.riviresa.custmate.ogl.supporting_class.ConstantClass.RAZORPAY_KEY)
+        co.setKeyID(razorKey)
         try {
             val image = R.drawable.riviresa_logo // Can be any drawable
             co.setImage(image)
             co.setFullScreenDisable(false)
             val options = JSONObject()
-            options.put("name", "Riviresa Nidhi ltd")
-            options.put("description", "Reference No. #123456")
+            options.put("name", paymentType)
+            options.put("description", "Riviresa Nidhi ltd")
             options.put("order_id", orderId) //from response of step 3.
             options.put("theme.color", "#c91854")
             options.put("currency", "INR")
@@ -125,14 +131,13 @@ class RazorPayActivity : com.riviresa.custmate.ogl.BaseActivity(), PaymentResult
             options.put("prefill.email", sharedPreferences.getString("email", ""))
             options.put("prefill.contact", sharedPreferences.getString("phone", ""))
             val retryObj = JSONObject()
-            retryObj.put("enabled", false)
+            retryObj.put("enabled", true)
             retryObj.put("max_count", 2)
             options.put("retry", retryObj)
             co.open(activity, options)
         } catch (e: Exception) {
-            Toast.makeText(activity, "Error in payment: " + e.message, Toast.LENGTH_SHORT)
-                .show()
             e.printStackTrace()
+            showError(error = "Payment Failure!", 111)
         }
     }
 
@@ -156,11 +161,11 @@ class RazorPayActivity : com.riviresa.custmate.ogl.BaseActivity(), PaymentResult
         warningDialog = Dialog(this)
         val inflater = this.layoutInflater
         val view = inflater.inflate(R.layout.layout_payment_error, null)
-        warningDialog.getWindow()?.setLayout(
+        warningDialog.window?.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT
         )
-        warningDialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+        warningDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
         val errorMessage = view.findViewById<TextView>(R.id.error_title)
         val ok = view.findViewById<Button>(R.id.btn_ok)
         var imgPayment = view.findViewById<ImageView>(R.id.img_error)
@@ -216,7 +221,10 @@ class RazorPayActivity : com.riviresa.custmate.ogl.BaseActivity(), PaymentResult
 
             //Intent intent1=new Intent(ConfirmationActivity.this, RenewLoanActivity.class);
 
-            val intent1 = Intent(this@RazorPayActivity, com.riviresa.custmate.ogl.renew_loan.RenewLoanActivity::class.java)
+            val intent1 = Intent(
+                this@RazorPayActivity,
+                com.riviresa.custmate.ogl.renew_loan.RenewLoanActivity::class.java
+            )
 
             intent1.putExtra("net_amount", net_amount)
             intent1.putExtra("flag", flag)
@@ -258,7 +266,7 @@ class RazorPayActivity : com.riviresa.custmate.ogl.BaseActivity(), PaymentResult
 
     override fun onPaymentError(p0: Int, p1: String?, p2: PaymentData?) {
 
-        if (com.riviresa.custmate.ogl.supporting_class.ConstantClass.RAZORPAY_KEY.startsWith("rzp_test")) {
+        if (razorKey.startsWith("rzp_test")) {
 
             var gson = Gson()
 

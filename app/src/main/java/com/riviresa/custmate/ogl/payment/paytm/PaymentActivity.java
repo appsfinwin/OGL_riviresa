@@ -151,6 +151,7 @@ public class PaymentActivity extends BaseActivity {
                         intent.putExtra("net_amount", viewmodel.amountToPay.get());
                         intent.putExtra("flag", flag);
                         intent.putExtra("from", "pay_online");
+                        intent.putExtra("paymentType", payment);
                         startActivity(intent);
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         //startPayment();

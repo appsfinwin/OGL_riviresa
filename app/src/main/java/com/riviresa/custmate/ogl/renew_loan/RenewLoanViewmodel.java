@@ -3,7 +3,6 @@ package com.riviresa.custmate.ogl.renew_loan;
 import android.app.Application;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -37,7 +36,7 @@ public class RenewLoanViewmodel extends AndroidViewModel {
 
         repository.setCompositeDisposable(compositeDisposable);
         repository.setmAction(mAction);
-
+        apiInterface= RetrofitClient.getApi();
     }
     Application application;
     Dialog loading;
@@ -45,7 +44,6 @@ public class RenewLoanViewmodel extends AndroidViewModel {
     MutableLiveData<RenewLoanAction> mAction;
     RenewLoanRepository repository;
     ApiInterface apiInterface;
-    SharedPreferences sharedPreferences;
 
     public ObservableField<String> transactionId=new ObservableField<>("");
     public ObservableField<String> date=new ObservableField<>("");
@@ -74,7 +72,6 @@ public class RenewLoanViewmodel extends AndroidViewModel {
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
         String param=(new JSONObject(jsonParams)).toString();
 
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.goldLoanRenewal(apiInterface, body);
     }
 
@@ -94,7 +91,6 @@ public class RenewLoanViewmodel extends AndroidViewModel {
         jsonParams.put("ben_id", CustBankId);
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
         String param=(new JSONObject(jsonParams)).toString();
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.goldLoanRenewal(apiInterface, body);
     }
 

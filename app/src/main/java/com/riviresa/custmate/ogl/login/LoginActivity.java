@@ -30,7 +30,6 @@ import com.google.android.play.core.install.model.UpdateAvailability;
 import com.riviresa.custmate.R;
 import com.riviresa.custmate.databinding.ActivityLoginBinding;
 import com.riviresa.custmate.ogl.BaseActivity;
-import com.riviresa.custmate.ogl.home.HomeActivity;
 import com.riviresa.custmate.ogl.login.action.LoginAction;
 import com.riviresa.custmate.ogl.reset_password.forgot_password.ForgotPasswordActivity;
 import com.riviresa.custmate.ogl.reset_password.otp.OtpActivity;
@@ -101,7 +100,6 @@ public class LoginActivity extends BaseActivity {
 
                     DataHolder.getInstance().loginData = (loginAction.getLoginResponse().getLoginData());
 
-
                     editor.putString("name", loginAction.loginResponse.getLoginData().getName());
                     editor.putString("email", loginAction.loginResponse.getLoginData().getEmailId());
                     editor.putString("phone", loginAction.loginResponse.getLoginData().getPhoneNum());
@@ -109,14 +107,14 @@ public class LoginActivity extends BaseActivity {
                     editor.putBoolean(ConstantClass.IS_LOGIN,false);
                     editor.commit();
 
-//                    viewmodel.initLoading(LoginActivity.this);
-//                    viewmodel.generateOtp(loginAction.loginResponse.getLoginData().getPhoneNum());
+                    viewmodel.initLoading(LoginActivity.this);
+                    viewmodel.generateOtp(loginAction.loginResponse.getLoginData().getPhoneNum());
 
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                        finish();
+//                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+//                        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                        startActivity(intent);
+//                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+//                        finish();
 
                     break;
 
@@ -158,8 +156,6 @@ public class LoginActivity extends BaseActivity {
                     startActivity(signuptIntent);
                     overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                     break;
-
-
             }
         });
     }
@@ -226,7 +222,6 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onShow(DialogInterface arg0) {
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.black));
-
             }
         });
         alertDialog2.setPositiveButton("Update",
@@ -238,7 +233,6 @@ public class LoginActivity extends BaseActivity {
                         startActivity(i);
                     }
                 });
-
 
         alertDialog2.setCancelable(false);
         alertDialog2.show();
@@ -326,7 +320,6 @@ public class LoginActivity extends BaseActivity {
                 mAppUpdateManager.completeUpdate();
             }
         });
-
 
         snackbar.setActionTextColor(getResources().getColor(R.color.red_btn_bg_color));
         snackbar.show();

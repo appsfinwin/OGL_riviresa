@@ -38,7 +38,7 @@ public class SignupViewmodel extends AndroidViewModel {
 
         repository.setCompositeDisposable(disposable);
         repository.setmAction(mAction);
-
+        apiInterface= RetrofitClient.getApi();
     }
     ActivitySignupBinding binding;
 
@@ -129,7 +129,6 @@ public class SignupViewmodel extends AndroidViewModel {
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
         String request=new JSONObject(jsonParams).toString();
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.otpGenerate(apiInterface, body);
     }
 

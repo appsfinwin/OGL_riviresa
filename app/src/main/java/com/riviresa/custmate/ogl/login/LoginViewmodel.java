@@ -27,7 +27,6 @@ import java.util.Map;
 import io.reactivex.disposables.CompositeDisposable;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
-import retrofit2.Retrofit;
 
 public class LoginViewmodel extends AndroidViewModel {
 
@@ -37,7 +36,6 @@ public class LoginViewmodel extends AndroidViewModel {
 
     public Activity activity;
     MutableLiveData<LoginAction> mAction;
-    Retrofit retrofit;
     ApiInterface apiInterface;
     public LoginViewmodel(@NonNull Application application) {
         super(application);
@@ -47,6 +45,7 @@ public class LoginViewmodel extends AndroidViewModel {
 
         loginRepository.setDisposible(compositeDisposable);
         mAction=new MutableLiveData<>();
+        apiInterface= RetrofitClient.getApi();
     }
 
     public ObservableField<String> of_username=new ObservableField<>("");
@@ -84,7 +83,6 @@ public class LoginViewmodel extends AndroidViewModel {
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
         String request=new JSONObject(jsonParams).toString();
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         loginRepository.otpGenerate(apiInterface, body);
     }
     public void clickSignIn(View view)
@@ -111,7 +109,6 @@ public class LoginViewmodel extends AndroidViewModel {
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
         String error=new JSONObject(jsonParams).toString();
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         loginRepository.loginApi(apiInterface,body);
     }
 

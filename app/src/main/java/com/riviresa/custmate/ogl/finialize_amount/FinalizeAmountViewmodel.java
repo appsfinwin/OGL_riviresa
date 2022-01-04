@@ -41,6 +41,7 @@ public class FinalizeAmountViewmodel extends AndroidViewModel {
         mAction=new MutableLiveData<>();
         repository.setmAction(mAction);
         sharedPreferences=application.getSharedPreferences("login",MODE_PRIVATE);
+        apiInterface= RetrofitClient.getApi();
     }
 
     FinalizeAmountRepository repository;
@@ -70,8 +71,6 @@ public class FinalizeAmountViewmodel extends AndroidViewModel {
 
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
-
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.getSettlementDetails(apiInterface,body);
     }
 

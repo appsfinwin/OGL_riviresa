@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
+
 import com.riviresa.custmate.R;
 import com.riviresa.custmate.databinding.ActivityOtpBinding;
 import com.riviresa.custmate.ogl.reset_password.otp.action.OtpAction;
@@ -43,6 +44,7 @@ public class OtpViewmodel extends AndroidViewModel {
         repository=OtpRepository.getInstance();
         repository.setDisposable(disposable);
         repository.setmACtion(mACtion);
+        apiInterface= RetrofitClient.getApi();
     }
     Application application;
     Disposable compositeDisposable;
@@ -111,7 +113,6 @@ public class OtpViewmodel extends AndroidViewModel {
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
         String request=new JSONObject(jsonParams).toString();
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.signUp(apiInterface, body);
     }
 
@@ -124,7 +125,6 @@ public class OtpViewmodel extends AndroidViewModel {
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
         String request=new JSONObject(jsonParams).toString();
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.validateOtp(apiInterface, body);
     }
 
@@ -154,8 +154,6 @@ public class OtpViewmodel extends AndroidViewModel {
         jsonParams.put("agent_id", "0");
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
-
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.resendOtp(apiInterface, body);
     }
 
@@ -165,8 +163,6 @@ public class OtpViewmodel extends AndroidViewModel {
         jsonParams.put("MobileNo",DataHolder.getInstance().loginData.getPhoneNum());
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
-
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.resendLoginOtp(apiInterface, body);
     }
 

@@ -16,11 +16,6 @@ import com.riviresa.custmate.ogl.final_confirmation.pojo.ApplictaionDetailsRespo
 import com.riviresa.custmate.ogl.retrofit.ApiInterface;
 import com.riviresa.custmate.ogl.retrofit.RetrofitClient;
 import com.riviresa.custmate.ogl.utils.Services;
-import com.riviresa.custmate.ogl.final_confirmation.action.ConfirmationAction;
-import com.riviresa.custmate.ogl.final_confirmation.pojo.ApplictaionDetailsResponse;
-import com.riviresa.custmate.ogl.retrofit.ApiInterface;
-import com.riviresa.custmate.ogl.retrofit.RetrofitClient;
-import com.riviresa.custmate.ogl.utils.Services;
 
 import org.json.JSONObject;
 
@@ -42,6 +37,7 @@ public class ConfirmationViewmodel extends AndroidViewModel {
         repository=ConfirmationRepository.getInstance();
         repository.setCompositeDisposable(compositeDisposable);
         repository.setmAction(mAction);
+        apiInterface= RetrofitClient.getApi();
 
     }
 
@@ -118,8 +114,6 @@ public class ConfirmationViewmodel extends AndroidViewModel {
         jsonParams.put("loanamount", loanAmount);
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
         String param=(new JSONObject(jsonParams)).toString();
-
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.getAppliactionDetails(apiInterface,body);
     }
 

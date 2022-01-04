@@ -38,7 +38,11 @@ public class AccountListRowViewmodel extends BaseObservable {
     }
 
     public String getNetWeight() {
-        netWeight=accountData.getItemWeight().toString();
+        if (accountData.getItemWeight()!=null) {
+            netWeight = accountData.getItemWeight().toString();
+        }else {
+            netWeight="";
+        }
         return netWeight;
     }
 

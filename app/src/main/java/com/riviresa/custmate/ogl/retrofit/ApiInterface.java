@@ -16,6 +16,7 @@ import com.riviresa.custmate.ogl.payment.axis_payment.pojo.PaymentResponse;
 import com.riviresa.custmate.ogl.payment.axis_payment.pojo.TokenResponse;
 import com.riviresa.custmate.ogl.payment.paytm.pojo.SettlementDetailsResponse;
 import com.riviresa.custmate.ogl.payment.paytm.pojo.checksum.ChecksumResponse;
+import com.riviresa.custmate.ogl.payment.razor_pay.pojo.GetKeyResponse;
 import com.riviresa.custmate.ogl.payment.razor_pay.pojo.GetOrderIdResponse;
 import com.riviresa.custmate.ogl.payment.razor_pay.pojo.VerifyPaymentResponse;
 import com.riviresa.custmate.ogl.renew_loan.pojo.RenewalResponse;
@@ -109,4 +110,7 @@ public interface ApiInterface {
 
     @POST("veirifytransaction")
     Single<VerifyPaymentResponse> verifyPayment(@Body RequestBody body);
+
+    @POST("getkey")
+    Single<GetKeyResponse> getRazorPayKey(@Body RequestBody body);
 }

@@ -48,6 +48,7 @@ public class ContactViewmodel extends AndroidViewModel implements Observable {
         repository=ContactRepository.getInstance();
         repository.setCompositeDisposable(compositeDisposable);
         repository.setmAction(mAction);
+        apiInterface= RetrofitClient.getApi();
 
     }
     ActivityContactBinding binding;
@@ -146,8 +147,6 @@ public class ContactViewmodel extends AndroidViewModel implements Observable {
         //jsonParams.put("cust_id", sharedPreferences.getString("cust_id",""));
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
-
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.getBranch(apiInterface);
     }
 
@@ -158,8 +157,6 @@ public class ContactViewmodel extends AndroidViewModel implements Observable {
         jsonParams.put("city", "000");
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
-
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.getContact(apiInterface,body);
     }
 
@@ -170,8 +167,6 @@ public class ContactViewmodel extends AndroidViewModel implements Observable {
         jsonParams.put("city", city);
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
-
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.getBranchList(apiInterface,body);
     }
 

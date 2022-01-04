@@ -14,10 +14,42 @@ public class RetrofitClient {
     private static Retrofit retrofit_login = null;
     private static Retrofit retrofitAxis = null;
     private static Retrofit retrofitRazorPay = null;
+    private static ApiInterface myApi = null;
+    private static ApiInterface axisApi = null;
+    private static ApiInterface razorPayApi = null;
 
-    public static Retrofit RetrofitClient() {
+//    public static Retrofit RetrofitClient() {
+//
+//        if (retrofit_login == null) {
+//            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+//            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+//
+//
+//            final OkHttpClient client = new OkHttpClient.Builder()
+//                    .readTimeout(60, TimeUnit.SECONDS)
+//                    .addInterceptor(logging)
+//                    .connectTimeout(60, TimeUnit.SECONDS)
+//                    .build();
+//
+//            retrofit_login = new Retrofit.Builder()
+//
+//                    //.baseUrl("http://192.168.0.221:170/")
+//                    //.baseUrl("http://oglsales.digicob.in/")//sales
+//                    //.baseUrl("http://testriviresaogl.digicob.in/")//test rivaresa
+//
+//                    //.baseUrl("http://oglriviresalive.digicob.in:2524/")//rivaresa
+//                    //.baseUrl("http://ogllocaltest.digicob.in/")//kosamattom test
+//                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//                    .addConverterFactory(GsonConverterFactory.create())
+//                    .client(client)
+//                    .build();
+//        }
+//        return retrofit_login;
+//    }
 
-        if (retrofit_login == null) {
+    public  static ApiInterface getApi(){
+        if (myApi==null)
+        {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -28,25 +60,26 @@ public class RetrofitClient {
                     .connectTimeout(60, TimeUnit.SECONDS)
                     .build();
 
-            retrofit_login = new Retrofit.Builder()
+            myApi = new Retrofit.Builder()
 
                     //.baseUrl("http://192.168.0.221:170/")
                     //.baseUrl("http://oglsales.digicob.in/")//sales
                     //.baseUrl("http://testriviresaogl.digicob.in/")//test rivaresa
-
-                    .baseUrl("http://oglriviresalive.digicob.in:2524/")//rivaresa
-                    //.baseUrl("http://ogllocaltest.digicob.in/")//kosamattom test
+                    .baseUrl("http://oglriviresalive.digicob.in:2524/")//rivaresa live
+                    //.baseUrl("http://oglsales.digicob.in/")//kosamattom test
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
-                    .build();
+                    .build()
+                    .create(ApiInterface.class);
+
         }
-        return retrofit_login;
+        return myApi;
     }
 
-    public static Retrofit RetrofitAxis() {
+    public static ApiInterface getAxisApi() {
 
-        if (retrofitAxis == null) {
+        if (axisApi == null) {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -57,20 +90,21 @@ public class RetrofitClient {
                     .connectTimeout(2, TimeUnit.MINUTES)
                     .build();
 
-            retrofitAxis = new Retrofit.Builder()
+            axisApi = new Retrofit.Builder()
                     //.baseUrl("https://ogluvnl.digicob.in/")
                     .baseUrl(ConstantClass.AXIS_BASE_URL)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
-                    .build();
+                    .build()
+                    .create(ApiInterface.class);
         }
-        return retrofitAxis;
+        return axisApi;
     }
 
-    public static Retrofit RetrofitRazorPay() {
+    public static ApiInterface getRazorPayApi() {
 
-        if (retrofitRazorPay == null) {
+        if (razorPayApi == null) {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -81,15 +115,16 @@ public class RetrofitClient {
                     .connectTimeout(2, TimeUnit.MINUTES)
                     .build();
 
-            retrofitRazorPay = new Retrofit.Builder()
+            razorPayApi = new Retrofit.Builder()
                     //.baseUrl("https://ogluvnl.digicob.in/")
                     .baseUrl(ConstantClass.RAZORPAY_BASE_URL)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
-                    .build();
+                    .build()
+                    .create(ApiInterface.class);
         }
-        return retrofitRazorPay;
+        return razorPayApi;
     }
 
 }

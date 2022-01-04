@@ -44,6 +44,7 @@ public class CalculatorViewmodel extends AndroidViewModel {
 
         repository.setCompositeDisposable(compositeDisposable);
         repository.setmAction(mAction);
+        apiInterface= RetrofitClient.getApi();
     }
 
     Application application;
@@ -117,7 +118,7 @@ public class CalculatorViewmodel extends AndroidViewModel {
         jsonParams.put("Scheme", scheme.get());
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
 
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
+//        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.getCalculator(apiInterface,body);
     }
 

@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.riviresa.custmate.ogl.payment.razor_pay.action.RazorpayAction
+import com.riviresa.custmate.ogl.retrofit.RetrofitClient
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import org.json.JSONObject
@@ -47,9 +48,20 @@ class RazorPayViewModel : ViewModel() {
             JSONObject(jsonParams).toString()
         )
 
-        var apiInterface = com.riviresa.custmate.ogl.retrofit.RetrofitClient.RetrofitRazorPay()?.create(
-            com.riviresa.custmate.ogl.retrofit.ApiInterface::class.java)!!
+        var apiInterface = RetrofitClient.getRazorPayApi()
         RazorpayRepository.getOrderId(apiInterface, body)
+    }
+
+    public fun getRazorKey() {
+        val jsonParams: MutableMap<String?, Any?> = HashMap()
+
+        val body = RequestBody.create(
+            "application/json; charset=utf-8".toMediaTypeOrNull(),
+            JSONObject(jsonParams).toString()
+        )
+
+        var apiInterface = RetrofitClient.getRazorPayApi()
+        RazorpayRepository.getKey(apiInterface, body)
     }
 
     public fun verifyPayment(orderId: String, paymentId: String, signature: String) {
@@ -66,8 +78,7 @@ class RazorPayViewModel : ViewModel() {
             JSONObject(jsonParams).toString()
         )
 
-        var apiInterface = com.riviresa.custmate.ogl.retrofit.RetrofitClient.RetrofitRazorPay()?.create(
-            com.riviresa.custmate.ogl.retrofit.ApiInterface::class.java)!!
+        var apiInterface = RetrofitClient.getRazorPayApi()
         RazorpayRepository.verifyPayment(apiInterface, body)
     }
 

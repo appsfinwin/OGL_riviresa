@@ -14,9 +14,6 @@ import androidx.lifecycle.MutableLiveData;
 import com.riviresa.custmate.ogl.retrofit.ApiInterface;
 import com.riviresa.custmate.ogl.retrofit.RetrofitClient;
 import com.riviresa.custmate.ogl.utils.Services;
-import com.riviresa.custmate.ogl.retrofit.ApiInterface;
-import com.riviresa.custmate.ogl.retrofit.RetrofitClient;
-import com.riviresa.custmate.ogl.utils.Services;
 
 import org.json.JSONObject;
 
@@ -37,6 +34,7 @@ public class ForgotPasswordViewmodel extends AndroidViewModel {
 
         repository.setCompositeDisposable(compositeDisposable);
         repository.setmAction(mAction);
+        apiInterface= RetrofitClient.getApi();
     }
 
     public ObservableField<String> phoneNumber=new ObservableField<>("");
@@ -86,8 +84,6 @@ public class ForgotPasswordViewmodel extends AndroidViewModel {
         //params.put("data", encr.conRevString(Enc_Utils.enValues(items)));
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(items)).toString());
-
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.sentOtp(apiInterface,body);
     }
 }

@@ -16,10 +16,6 @@ import com.riviresa.custmate.ogl.account_list.action.AccountListAction;
 import com.riviresa.custmate.ogl.retrofit.ApiInterface;
 import com.riviresa.custmate.ogl.retrofit.RetrofitClient;
 import com.riviresa.custmate.ogl.utils.Services;
-import com.riviresa.custmate.ogl.account_list.action.AccountListAction;
-import com.riviresa.custmate.ogl.retrofit.ApiInterface;
-import com.riviresa.custmate.ogl.retrofit.RetrofitClient;
-import com.riviresa.custmate.ogl.utils.Services;
 
 import org.json.JSONObject;
 
@@ -29,7 +25,6 @@ import java.util.Map;
 import io.reactivex.disposables.CompositeDisposable;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
-import retrofit2.Retrofit;
 
 public class AccountListViewmodel extends AndroidViewModel {
 
@@ -38,7 +33,7 @@ public class AccountListViewmodel extends AndroidViewModel {
     SharedPreferences sharedPreferences;
     public Activity activity;
     MutableLiveData<AccountListAction> mAction;
-    Retrofit retrofit;
+
     ApiInterface apiInterface;
     AccountListRepository repository;
 
@@ -51,6 +46,7 @@ public class AccountListViewmodel extends AndroidViewModel {
         compositeDisposable=new CompositeDisposable();
         sharedPreferences=application.getSharedPreferences("login", Context.MODE_PRIVATE);
         repository.setCompositeDisposable(compositeDisposable);
+        apiInterface= RetrofitClient.getApi();
     }
 
     Dialog loading;
@@ -87,8 +83,6 @@ public class AccountListViewmodel extends AndroidViewModel {
 
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
-
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.accountDetailsCall(apiInterface,body);
     }
 
@@ -109,8 +103,6 @@ public class AccountListViewmodel extends AndroidViewModel {
 
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
-
-        apiInterface = RetrofitClient.RetrofitClient().create(ApiInterface.class);
         repository.inventoryDetailsCall(apiInterface,body);
     }
 
