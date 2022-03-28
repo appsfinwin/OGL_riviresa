@@ -67,6 +67,7 @@ public class RetrofitClient {
                     //.baseUrl("http://testriviresaogl.digicob.in/")//test rivaresa
                     .baseUrl("http://oglriviresalive.digicob.in:2524/")//rivaresa live
                     //.baseUrl("http://oglsales.digicob.in/")//kosamattom test
+                    //.baseUrl("http://ogllocaltest.digicob.in/")//kosamattom test
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
@@ -126,5 +127,4 @@ public class RetrofitClient {
         }
         return razorPayApi;
     }
-
 }

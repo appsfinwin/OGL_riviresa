@@ -30,6 +30,7 @@ import com.google.android.play.core.install.model.UpdateAvailability;
 import com.riviresa.custmate.R;
 import com.riviresa.custmate.databinding.ActivityLoginBinding;
 import com.riviresa.custmate.ogl.BaseActivity;
+import com.riviresa.custmate.ogl.home.HomeActivity;
 import com.riviresa.custmate.ogl.login.action.LoginAction;
 import com.riviresa.custmate.ogl.reset_password.forgot_password.ForgotPasswordActivity;
 import com.riviresa.custmate.ogl.reset_password.otp.OtpActivity;
@@ -107,14 +108,14 @@ public class LoginActivity extends BaseActivity {
                     editor.putBoolean(ConstantClass.IS_LOGIN,false);
                     editor.commit();
 
-                    viewmodel.initLoading(LoginActivity.this);
-                    viewmodel.generateOtp(loginAction.loginResponse.getLoginData().getPhoneNum());
+//                    viewmodel.initLoading(LoginActivity.this);
+//                    viewmodel.generateOtp(loginAction.loginResponse.getLoginData().getPhoneNum());
 
-//                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-//                        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                        startActivity(intent);
-//                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-//                        finish();
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                        finish();
 
                     break;
 

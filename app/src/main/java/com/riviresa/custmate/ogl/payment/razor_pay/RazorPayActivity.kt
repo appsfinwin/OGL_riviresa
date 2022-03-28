@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.google.gson.Gson
 import com.razorpay.Checkout
 import com.razorpay.PaymentData
@@ -90,11 +91,24 @@ class RazorPayActivity : com.riviresa.custmate.ogl.BaseActivity(), PaymentResult
         viewModel.mAction.observe(this, Observer {
             viewModel.cancelLoading()
             when (it.action) {
-                RazorpayAction.API_ERROR -> {}
+                RazorpayAction.API_ERROR -> {
+
+                    var dialog = SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+                    dialog.setTitleText("ERROR!")
+                    dialog.setCancelable(false)
+                    dialog.setConfirmClickListener {
+                        it.dismiss()
+                        finish()
+                    }
+                    dialog.setContentText(it.error)
+                    dialog.show()
+
+                }
                 RazorpayAction.GET_ORDER_ID_SUCCESS -> {
                     orderId = it.getOrderIdResponse?.Data?.id.toString()
-                    if (razorKey!=""){
-                    startPayment(amount, orderId)}
+                    if (razorKey != "") {
+                        startPayment(amount, orderId)
+                    }
                 }
                 RazorpayAction.PAYMENT_SUCCESS -> {
                     showSuccess(tranId)
