@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -38,9 +36,6 @@ import com.riviresa.custmate.ogl.signup.SignupActivity;
 import com.riviresa.custmate.ogl.supporting_class.ConstantClass;
 import com.riviresa.custmate.ogl.utils.DataHolder;
 import com.riviresa.custmate.ogl.utils.Services;
-import com.riviresa.custmate.ogl.utils.VersionChecker;
-
-import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends BaseActivity {
 
@@ -76,7 +71,7 @@ public class LoginActivity extends BaseActivity {
         viewmodel.setActivity(this);
         binding.setViewmodel(viewmodel);
         if (isNetworkOnline()) {
-            checkVersion();
+
         }else {
             Toast.makeText(this, "No Internet", Toast.LENGTH_SHORT).show();
         }
@@ -177,40 +172,6 @@ public class LoginActivity extends BaseActivity {
         startActivity(a);
     }
 
-    private void checkVersion() {
-
-        VersionChecker versionChecker = new VersionChecker();
-        try {
-
-            latestVersion = versionChecker.execute().get();
-            // Toast.makeText(getActivity().getApplicationContext(), latestVersion , Toast.LENGTH_SHORT).show();
-
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        PackageManager manager = getPackageManager();
-        PackageInfo info = null;
-        try {
-            info = manager.getPackageInfo(getPackageName(), 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        assert info != null;
-        currentVersion = info.versionName;
-        if (latestVersion==null)
-        {
-            viewmodel.cancelLoading();
-            //Toast.makeText(getActivity().getApplicationContext(), "Slow network Detected!", Toast.LENGTH_SHORT).show();
-        }else {
-            viewmodel.cancelLoading();
-            if (Float.parseFloat(currentVersion) < Float.parseFloat(latestVersion)) {
-                showUpdateDialog();
-            }
-        }
-    }
-
-
     private void showUpdateDialog() {
         AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
         // Setting Dialog Title
@@ -289,11 +250,11 @@ public class LoginActivity extends BaseActivity {
         mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(appUpdateInfo -> {
 
             if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE /*AppUpdateType.IMMEDIATE*/)){
+                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE /*AppUpdateType.IMMEDIATE*/)){
 
                 try {
                     mAppUpdateManager.startUpdateFlowForResult(
-                            appUpdateInfo, AppUpdateType.FLEXIBLE /*AppUpdateType.IMMEDIATE*/, LoginActivity.this, RC_APP_UPDATE);
+                            appUpdateInfo, AppUpdateType.IMMEDIATE /*AppUpdateType.IMMEDIATE*/, LoginActivity.this, RC_APP_UPDATE);
 
                 } catch (IntentSender.SendIntentException e) {
                     e.printStackTrace();
